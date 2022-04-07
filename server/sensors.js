@@ -1,9 +1,18 @@
+const { fan } = require("devices");
+
 //HERE WE FIND OUR TEMPERATURE / HUMIDITY / LIGHT / CARBON DIOXIDE / SOIL MOISTURE / SOIL pH / WIND SPEED / PRECIPITATION SENSORS
 
-// TEMPERATURE SENSOR (expected values : Celsius (range: -20 ~ 50) and Farenheit (range 0 ~ 120))
-
+// TEMPERATURE SENSOR
+//(expected values : Celsius (range: -20 ~ 50) and Farenheit (range 0 ~ 120))
+//Greenhouse Temperature levels should be 26.6°C - 29.4°C / 80°F - 85°F
+//Equations °F = (°C × 9/5) + 32 /°C = (°F − 32) x 5/9
+//BACKEND WILL WORK WITH °C but conversion can easily be done on point of display
+const tempSensor = (minTemp, maxTemp, outdoorTemp) => {
+  fan(true, 20);
+};
 //HUMIDITY SENSOR
 //(expected values : RH (Relative Humidity) (range: 0% ~ 100%) )
+//Greenhouse Humidity levels should be 50%
 //Relative Humidity = (density of water vapor / density of water vapor at saturation) x 100%
 
 //LIGHT SENSOR (PAR (photosynthetically active radiation) range: 0 ~ 2500 µMol/m2s, ±5% )

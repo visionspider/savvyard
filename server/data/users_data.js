@@ -16,21 +16,26 @@ const usersData = [
       zones: [
         {
           zoneId: {
+            zoneName: "Zone 1",
             sensors: [
               {
                 sensorId: {
+                  name: "Temperature Sensor",
                   sensorType: "temp-sensor",
-                  tempMin: "15",
-                  tempMax: "25",
+                  pos: 1,
+                  tempMin: "24",
+                  tempMax: "29",
                   controlTemp: {
                     lowerTemp: "deviceId",
                     increaseTemp: "deviceId",
                   },
                 },
                 sensorId: {
+                  name: "Humidity Sensor",
                   sensorType: "humidity-sensor",
-                  humidityMin: "30",
-                  humidityMax: "60",
+                  pos: 3,
+                  humidityMin: "50",
+                  humidityMax: "55",
                   controlHumidity: {
                     lowerHumidity: "deviceId",
                     increaseHumidity: "deviceId",
@@ -41,13 +46,17 @@ const usersData = [
             devices: [
               {
                 deviceId: {
+                  name: "Heating Fan",
                   deviceType: "heat-fan",
+                  pos: 2,
                   switch: "false",
                   duty: "increaseTemp",
                   listen: "sensorId",
                 },
                 deviceId: {
+                  name: "Cooling Fan",
                   deviceType: "cool-fan",
+                  pos: 4,
                   switch: "false",
                   duty: "lowerTemp",
                   listen: "sensorId",

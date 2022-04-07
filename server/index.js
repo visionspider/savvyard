@@ -5,7 +5,7 @@ const morgan = require("morgan");
 
 const PORT = 4000;
 
-const { getUser, updateUser } = require("./handlers");
+const { getUser, updateUserInfo, getWeather } = require("./handlers");
 
 const { countryInformation } = require("../server/data/countryData");
 
@@ -30,11 +30,13 @@ express()
   // ======================== List of all enpoints ========================//
 
   // Gets user in database
-  .get("/api/get-user/:userId", getUser())
+  .get("/api/get-user/:userId", getUser)
   // Update user in database
-  .patch("/api/update", updateUser())
+  .patch("/api/update", updateUserInfo)
   // Delete user data in database
 
+  // Gets weather data from API
+  .get("/api/weather", getWeather)
   // Handles all the endpoints
   .get("*", (req, res) => {
     res.status(404).json({
