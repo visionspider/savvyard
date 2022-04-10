@@ -3,6 +3,7 @@ const request = require("request-promise");
 
 const opencage = require("opencage-api-client");
 require("dotenv").config();
+
 //GET latitude and longitude to use with weather API
 const getPositionFromAddress = (address) => {
   const requestObj = {
@@ -15,9 +16,27 @@ const getPositionFromAddress = (address) => {
     .then((res) => res.results[0].geometry)
     .catch((err) => err.message);
 };
+// const getWeather = () => {
+//   return request(
+//     `https://api.openweathermap.org/data/2.5/weather?lat=${}&lon=${}&appid=${OPEN_WEATHER_API_KEY}`
+//   )
+//     .then((res) => JSON.parse(res))
+//     .then((data) => data)
+//     .catch((err) => err);
+// };
 
 const getWeatherFromCoordinates = (coordinates) => {
-  // const { lat, lng } = coordinates;
+  const { lat, lng } = coordinates;
+  const OPEN_WEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
+
+  return request(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat.toFixed(
+      2
+    )}&lon=${lng.toFixed(2)}&appid=${OPEN_WEATHER_API_KEY}&units=metric`
+  )
+    .then((res) => JSON.parse(res))
+    .then((data) => data)
+    .catch((err) => err);
   // return request(`https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(
   //   2
   // )}&longitude=${lng.toFixed(

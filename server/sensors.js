@@ -1,4 +1,4 @@
-const { fan } = require("devices");
+const { fan } = require("./devices");
 
 //HERE WE FIND OUR TEMPERATURE / HUMIDITY / LIGHT / CARBON DIOXIDE / SOIL MOISTURE / SOIL pH / WIND SPEED / PRECIPITATION SENSORS
 
@@ -7,8 +7,78 @@ const { fan } = require("devices");
 //Greenhouse Temperature levels should be 26.6°C - 29.4°C / 80°F - 85°F
 //Equations °F = (°C × 9/5) + 32 /°C = (°F − 32) x 5/9
 //BACKEND WILL WORK WITH °C but conversion can easily be done on point of display
-const tempSensor = (minTemp, maxTemp, outdoorTemp) => {
-  fan(true, 20);
+
+// "current_weather": {
+//   "temperature": 7.4,
+//   "weathercode": 61,
+//   "windspeed": 12.5,
+//   "time": "2022-04-07T17:00",
+//   "winddirection": 113
+// }
+
+const tempSensor = (sensor, device, outdoorTemp) => {
+  const { tempMin, tempMax } = sensor;
+  const { sunrise, sunset, currentWeather, currentTime, condition } =
+    outdoorTemp;
+  const tempThreshold = [
+    -30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50,
+  ];
+  //currentTime is UNIX UTC // unix * 1000 = ms for ISO
+  const date = new Date(currentTime * 1000);
+  let tempChange = 0;
+  // let weatherCode = 0;
+
+  // weatherCodes.forEach((code, pos) => {
+  //   if (code.toLowerCase().includes("sunny")) weatherCode = pos;
+  // });
+
+  //LOGIC for TEMPERATURE LOSS/GAIN per MINUTE
+  tempThreshold.forEach((threshold) => {
+    let clearSky = -0.01;
+    if (Math.round(currentWeather) === threshold) {
+      if (condition.toLowerCase().includes("sunny")) {
+        clearSky = 0.01;
+      }
+      if (+date > +sunrise && +date < +sunset) {
+        if (threshold < tempMin) {
+          if (threshold < 0) {
+            tempChange = -threshold * (clearSky * 2);
+          } else {
+            tempChange = threshold * (clearSky * 2);
+          }
+        } else if (threshold > tempMax) {
+          tempChange = threshold * (clearSky * 5);
+        }
+      } else if (+date < +sunrise && +date > +sunset) {
+        if (threshold < tempMin) {
+          tempChange = threshold * 0.02;
+        } else if (threshold > tempMax) {
+          tempChange = threshold * 0.01;
+        }
+      }
+    }
+  });
+
+  //LOGIC for FAN ACTIVATION
+  sensor.tempReading += tempChange;
+
+  if (
+    sensor.tempReading > sensor.tempMax &&
+    device.listen === sensor.sensorId
+  ) {
+    device.switch = true;
+    sensor.tempReading += fan(tempChange);
+  } else if (
+    sensor.tempReading < sensor.tempMin &&
+    device.listen === sensor.sensorId
+  ) {
+    device.switch = true;
+    sensor.tempReading += fan(tempChange);
+  } else if (device.listen === sensor.sensorId) {
+    device.switch = false;
+  }
+  let result = [{ ...sensor }, { ...device }];
+  return {};
 };
 //HUMIDITY SENSOR
 //(expected values : RH (Relative Humidity) (range: 0% ~ 100%) )
@@ -92,3 +162,5 @@ const tempSensor = (minTemp, maxTemp, outdoorTemp) => {
 // /users
 // /:userId/zones
 // /:userId/graph
+
+module.exports = { tempSensor };

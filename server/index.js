@@ -8,6 +8,7 @@ const PORT = 4000;
 const { getUser, updateUserInfo, getWeather } = require("./handlers");
 
 const { countryInformation } = require("../server/data/countryData");
+const { default: helmet } = require("helmet");
 
 express()
   .use(function (req, res, next) {
@@ -21,6 +22,7 @@ express()
     );
     next();
   })
+  .use(helmet())
   .use(morgan("tiny"))
   .use(express.static("./server/assets"))
   .use(express.json())
@@ -36,7 +38,7 @@ express()
   // Delete user data in database
 
   // Gets weather data from API
-  .get("/api/weather", getWeather)
+  .get("/api/weather/:userId", getWeather)
   // Handles all the endpoints
   .get("*", (req, res) => {
     res.status(404).json({
