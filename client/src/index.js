@@ -1,7 +1,13 @@
 import ReactDOM from "react-dom";
 import App from "./components/App";
+import { CurrentUserContextProvider } from "./components/Context/CurrentUserContext";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <CurrentUserContextProvider>
+    <App />
+  </CurrentUserContextProvider>,
+  document.getElementById("root")
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

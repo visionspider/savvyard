@@ -78,7 +78,7 @@ const tempSensor = (sensor, device, outdoorTemp) => {
     device.switch = false;
   }
   let result = [{ ...sensor }, { ...device }];
-  return {};
+  return result;
 };
 //HUMIDITY SENSOR
 //(expected values : RH (Relative Humidity) (range: 0% ~ 100%) )
