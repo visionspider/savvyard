@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as errorimg } from "../assets/error.svg";
+import Loading from "./Loading";
 const Error = () => {
   return (
     <Wrapper>
@@ -12,7 +13,9 @@ const Error = () => {
           The page you are looking for might have been removed, had its name
           changed or is temporarily unavailable.
         </p>
-        <ReturnBtn to="/home">Go back to Homepage</ReturnBtn>
+        <ReturnBtn to={{ pathname: "/home" }} target="_self">
+          Go back to Homepage
+        </ReturnBtn>
       </ErrorContainer>
     </Wrapper>
   );

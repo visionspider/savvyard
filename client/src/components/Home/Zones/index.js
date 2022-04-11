@@ -13,7 +13,7 @@ const Zones = ({ zone }) => {
       <ZoneContainer>
         <h2>{data.zoneName}</h2>
         {deviceArr.map((device) => (
-          <Devices device={device} />
+          <Devices key={device.id} device={device} />
         ))}
       </ZoneContainer>
     </Wrapper>

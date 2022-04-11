@@ -14,9 +14,9 @@ const batchImport = async () => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("savvyard");
-  usersData.forEach((userData) => (userData._id = uuidv4()));
-  // const result = await db.collection("user_data").insertMany(usersData);
-  const result = await db.collection("users").insertMany(users);
+  // usersData.forEach((userData) => (userData._id = uuidv4()));
+  const result = await db.collection("user_data").insertMany(usersData);
+  // const result = await db.collection("users").insertMany(users);
   console.log(result);
   // const result2 = await db.collection("items").insertMany(items);
   // console.log(result2);

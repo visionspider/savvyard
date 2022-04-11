@@ -1,96 +1,81 @@
 import { createContext, useState, useEffect } from "react";
-import { checkSessionStorage } from "./CheckSessionStorage";
 export const CurrentUserContext = createContext(null);
 export const CurrentUserContextProvider = ({ children }) => {
-  //itemsArray contains all 300+ items, it is a array of object
-  const [itemsArray, setItemsArray] = useState([]);
-  const [companyArray, setCompantArray] = useState([]);
-  const [pageInfo, setPageInfo] = useState([]);
+  //userInfo has all the data of the user
+  //weather has all of the current weather data based on greenhouse location
+  const [userInfo, setUserInfo] = useState({});
+  const [weather, setWeather] = useState({});
   //statusBegin is a indicator for finishing fetch data in this context file
-  const [status, setStatus] = useState("loading");
-  // orderArray contains order information. for example: orderArray = [{_id:6543,qty:2},{_id:6545,qty:4},...]
-  const [orderArray, setOrderArray] = useState([]);
-  const [renderArray, setRenderArray] = useState([]);
-  const [pageNumberArray, setPageNumberArray] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
-  const time = checkSessionStorage("timer", 0);
-  const currentTime = Date.now();
+  const [status, setStatus] = useState({
+    state: "loading",
+    msg: "",
+    status: "",
+  });
+
+  const userId = "6db20ea8-b66c-4d00-90b2-33989a4a5ec8";
   useEffect(() => {
-    if (currentTime - time >= 3000) {
-      sessionStorage.setItem("timer", JSON.stringify(Date.now()));
-      fetch("/api/get-companies")
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data.message);
-          setCompantArray(data.data);
-          sessionStorage.setItem("companies", JSON.stringify(data.data));
-          return fetch("/api/getPagination")
+    console.log("Starting fetches");
+    fetch(`/api/get-user/${userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.message, data);
+        console.log("checking data");
+        if (data.status === 200) {
+          setUserInfo(data.data);
+          return fetch(`/api/weather/${userId}`)
             .then((res) => res.json())
             .then((data) => {
               console.log(data.message);
-              setPageInfo(data.data);
-              sessionStorage.setItem("pagination", JSON.stringify(data.data));
-              return fetch("/api/get-items")
-                .then((res) => res.json())
-                .then((data) => {
-                  console.log(data.message);
-                  setItemsArray(data.data);
-                  setStatus("idle");
-                  setRenderArray(data.data);
-                  sessionStorage.setItem("items", JSON.stringify(data.data));
-                  let arr = [];
-                  let pageNumber = Math.floor(data.data.length / 25 + 1);
-                  for (let i = 1; i <= pageNumber; i++) {
-                    arr.push(i);
-                  }
-                  setPageNumberArray([...arr]);
-                })
-                .catch((error) => {
-                  console.log(error.message);
+              if (data.status === 200) {
+                setWeather(data.data);
+                setStatus({ ...status, state: "idle" });
+              } else {
+                setStatus({
+                  ...status,
+                  state: "error",
+                  msg: data.message,
+                  status: data.status,
                 });
+              }
             })
             .catch((error) => {
               console.log(error.message);
+              setStatus({
+                ...status,
+                state: "error",
+                msg: error.message,
+                status: error.status,
+              });
             });
-        })
-        .catch((error) => {
-          console.log(error.message);
+        } else {
+          setStatus({
+            ...status,
+            state: "error",
+            msg: data.message,
+            status: data.status,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setStatus({
+          ...status,
+          state: "error",
+          msg: error.message,
+          status: error.status,
         });
-    } else {
-      setCompantArray(checkSessionStorage("companies", []));
-      setPageInfo(checkSessionStorage("pagination", []));
-      setItemsArray(checkSessionStorage("items", []));
-      setRenderArray(checkSessionStorage("items", []));
-      setStatus("idle");
-      let arr = [];
-      let pageNumber = Math.floor(
-        checkSessionStorage("items", []).length / 25 + 1
-      );
-      for (let i = 1; i <= pageNumber; i++) {
-        arr.push(i);
-      }
-      setPageNumberArray([...arr]);
-    }
+      });
   }, []);
+  console.log(status);
   return (
     <CurrentUserContext.Provider
       value={{
-        itemsArray,
-        companyArray,
+        userInfo,
+        setUserInfo,
+        weather,
+        setWeather,
         status,
-        orderArray,
-        pageInfo,
-        renderArray,
-        pageNumberArray,
-        pageNumber,
-        setPageNumber,
-        setPageNumberArray,
-        setItemsArray,
-        setCompantArray,
         setStatus,
-        setOrderArray,
-        setPageInfo,
-        setRenderArray,
       }}
     >
       {children}

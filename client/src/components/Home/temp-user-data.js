@@ -5,7 +5,7 @@ export const ZoneArr = [
       zoneName: "Zone 1",
       sensors: [
         {
-          sensorId: "sensorId1",
+          id: "sensorId1",
           name: "Temperature Sensor",
           sensorType: "temp-sensor",
           pos: 1,
@@ -18,7 +18,7 @@ export const ZoneArr = [
           },
         },
         {
-          sensorId: "sensorId3",
+          id: "sensorId3",
           name: "Humidity Sensor",
           sensorType: "humidity-sensor",
           pos: 3,
@@ -33,7 +33,7 @@ export const ZoneArr = [
       ],
       devices: [
         {
-          deviceId: "deviceId2",
+          id: "deviceId2",
           name: "Heating Fan",
           deviceType: "heat-fan",
           pos: 2,
@@ -42,7 +42,7 @@ export const ZoneArr = [
           listen: "sensorId",
         },
         {
-          deviceId: "deviceId4",
+          id: "deviceId4",
           name: "Cooling Fan",
           deviceType: "cool-fan",
           pos: 4,
@@ -59,7 +59,7 @@ export const ZoneArr = [
       zoneName: "Zone 2",
       sensors: [
         {
-          sensorId: "sensorId",
+          id: "sensorId",
           name: "Temperature Sensor",
           sensorType: "temp-sensor",
           pos: 1,
@@ -72,7 +72,7 @@ export const ZoneArr = [
           },
         },
         {
-          sensorId: "sensorId",
+          id: "sensorId",
           name: "Humidity Sensor",
           sensorType: "humidity-sensor",
           pos: 3,
@@ -87,7 +87,7 @@ export const ZoneArr = [
       ],
       devices: [
         {
-          deviceId: "deviceId",
+          id: "deviceId",
           name: "Heating Fan",
           deviceType: "heat-fan",
           pos: 2,
@@ -96,7 +96,7 @@ export const ZoneArr = [
           listen: "sensorId",
         },
         {
-          deviceId: "deviceId",
+          id: "deviceId",
           name: "Cooling Fan",
           deviceType: "cool-fan",
           pos: 4,
@@ -113,7 +113,7 @@ export const ZoneArr = [
       zoneName: "Zone 3",
       sensors: [
         {
-          sensorId: "sensorId1",
+          id: "sensorId1",
           name: "Temperature Sensor",
           sensorType: "temp-sensor",
           pos: 1,
@@ -126,7 +126,7 @@ export const ZoneArr = [
           },
         },
         {
-          sensorId: "sensorId3",
+          id: "sensorId3",
           name: "Humidity Sensor",
           sensorType: "humidity-sensor",
           pos: 3,
@@ -141,7 +141,7 @@ export const ZoneArr = [
       ],
       devices: [
         {
-          deviceId: "deviceId2",
+          id: "deviceId2",
           name: "Heating Fan",
           deviceType: "heat-fan",
           pos: 2,
@@ -150,7 +150,7 @@ export const ZoneArr = [
           listen: "sensorId",
         },
         {
-          deviceId: "deviceId4",
+          id: "deviceId4",
           name: "Cooling Fan",
           deviceType: "cool-fan",
           pos: 4,
@@ -167,7 +167,7 @@ export const ZoneArr = [
       zoneName: "Zone 4",
       sensors: [
         {
-          sensorId: "sensorId",
+          id: "sensorId",
           name: "Temperature Sensor",
           sensorType: "temp-sensor",
           pos: 1,
@@ -180,7 +180,7 @@ export const ZoneArr = [
           },
         },
         {
-          sensorId: "sensorId",
+          id: "sensorId",
           name: "Humidity Sensor",
           sensorType: "humidity-sensor",
           pos: 3,
@@ -195,7 +195,7 @@ export const ZoneArr = [
       ],
       devices: [
         {
-          deviceId: "deviceId",
+          id: "deviceId",
           name: "Heating Fan",
           deviceType: "heat-fan",
           pos: 2,
@@ -204,7 +204,7 @@ export const ZoneArr = [
           listen: "sensorId",
         },
         {
-          deviceId: "deviceId",
+          id: "deviceId",
           name: "Cooling Fan",
           deviceType: "cool-fan",
           pos: 4,
@@ -221,7 +221,7 @@ export const ZoneArr = [
       zoneName: "Zone 5",
       sensors: [
         {
-          sensorId: "sensorId1",
+          id: "sensorId1",
           name: "Temperature Sensor",
           sensorType: "temp-sensor",
           pos: 1,
@@ -234,7 +234,7 @@ export const ZoneArr = [
           },
         },
         {
-          sensorId: "sensorId3",
+          id: "sensorId3",
           name: "Humidity Sensor",
           sensorType: "humidity-sensor",
           pos: 3,
@@ -249,7 +249,7 @@ export const ZoneArr = [
       ],
       devices: [
         {
-          deviceId: "deviceId2",
+          id: "deviceId2",
           name: "Heating Fan",
           deviceType: "heat-fan",
           pos: 2,
@@ -258,7 +258,7 @@ export const ZoneArr = [
           listen: "sensorId",
         },
         {
-          deviceId: "deviceId4",
+          id: "deviceId4",
           name: "Cooling Fan",
           deviceType: "cool-fan",
           pos: 4,
@@ -275,7 +275,7 @@ export const ZoneArr = [
       zoneName: "Zone 6",
       sensors: [
         {
-          sensorId: "sensorId",
+          id: "sensorId",
           name: "Temperature Sensor",
           sensorType: "temp-sensor",
           pos: 1,
@@ -288,7 +288,7 @@ export const ZoneArr = [
           },
         },
         {
-          sensorId: "sensorId",
+          id: "sensorId",
           name: "Humidity Sensor",
           sensorType: "humidity-sensor",
           pos: 3,
@@ -303,7 +303,7 @@ export const ZoneArr = [
       ],
       devices: [
         {
-          deviceId: "deviceId",
+          id: "deviceId",
           name: "Heating Fan",
           deviceType: "heat-fan",
           pos: 2,
@@ -312,7 +312,7 @@ export const ZoneArr = [
           listen: "sensorId",
         },
         {
-          deviceId: "deviceId",
+          id: "deviceId",
           name: "Cooling Fan",
           deviceType: "cool-fan",
           pos: 4,

@@ -1,23 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { RiEyeCloseFill } from "react-icons/ri";
 import styled from "styled-components";
+import { CurrentUserContext } from "../Context/CurrentUserContext";
+import Error from "../Error";
 import useScrollDirection from "../hooks/useScrollDirection.hook";
+import Loading from "../Loading";
 import { ZoneArr } from "./temp-user-data";
 import Zones from "./Zones";
 
 const Home = () => {
   const [edit, setEdit] = useState(false);
   const scrollDirection = useScrollDirection();
+  const { userInfo, status } = useContext(CurrentUserContext);
 
-  return (
-    <Wrapper>
-      <EditHeader className={scrollDirection ? "scrollDown" : "scrollUp"}>
-        {edit ? "CANCEL | SAVE" : "EDIT"}
-      </EditHeader>
-      {ZoneArr.map((zone) => (
-        <Zones zone={zone} />
-      ))}
-    </Wrapper>
-  );
+  console.log(status);
+  if (status.state === "loading") {
+    return <Loading />;
+  } else if (status.state === "error") {
+    return <Error />;
+  } else if (status.state === "idle") {
+    console.log(userInfo.userInfo.zones);
+    return (
+      <Wrapper>
+        <EditHeader className={scrollDirection ? "scrollDown" : "scrollUp"}>
+          {edit ? "CANCEL | SAVE" : "EDIT"}
+        </EditHeader>
+        {userInfo.userInfo.zones.map((zone) => (
+          <Zones key={zone.zoneId} zone={zone} />
+        ))}
+      </Wrapper>
+    );
+  }
 };
 
 const Wrapper = styled.div`

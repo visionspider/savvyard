@@ -24,22 +24,25 @@ const { getPositionFromAddress, getWeatherFromCoordinates } = require("./apis");
 
 //GET retrieve user info 200 / 404 / 500
 const getUser = async (req, res) => {
-  const _id = +req.params.userId;
+  const _id = req.params.userId;
   await client.connect();
   try {
     const user = await DB.collection(USERS_DATA).findOne({ _id });
     if (user) {
       return res.status(200).json({
+        status: 200,
         message: "User retrieved successfully.",
         data: user,
       });
     } else {
       return res
         .status(404)
-        .json({ message: "User id is incorrect.", data: _id });
+        .json({ status: 404, message: "User id is incorrect.", data: _id });
     }
   } catch (err) {
     res.status(500).json({
+      status: 500,
+
       message: "An unknown error has occurred. Please try your request again.",
     });
   }
@@ -70,6 +73,8 @@ const updateUserInfo = async (req, res) => {
       }
       // const removeInfo = await DB.collection(USERS_DATA).deleteOne({ _id });
       return res.status(200).json({
+        status: 200,
+
         message: "Updated user successfully.",
         data: result,
       });
@@ -83,6 +88,8 @@ const updateUserInfo = async (req, res) => {
     return;
   } catch (err) {
     res.status(500).json({
+      status: 500,
+
       message: "An unknown error has occurred. Please try your request again.",
     });
   }
@@ -149,18 +156,24 @@ const getWeather = async (req, res) => {
       if (weather) {
       }
       return res.status(200).json({
+        status: 200,
+
         message: "Weather fetched successfully.",
         data: weather,
         user,
       });
     } else {
       return res.status(400).json({
+        status: 400,
+
         message: "User id is incorrect.",
         data: _id,
       });
     }
   } catch (err) {
     res.status(500).json({
+      status: 500,
+
       message: "An unknown error has occurred. Please try your request again.",
     });
   }
