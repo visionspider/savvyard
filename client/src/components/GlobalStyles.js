@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     
 }
 button {
+    cursor: pointer;
     font-weight: bold;
   border-radius: 20px;
   background-color: #c2fbd7;
@@ -45,6 +46,34 @@ button {
       rgba(44, 187, 99, 0.25) 0 16px 32px;
     transform: scale(1.05) rotate(-1deg);
   }
+
+  &.cancel{
+    color: white;
+    background-color: #f44336;
+    box-shadow: rgba(244, 67, 54, 0.2) 0 -25px 18px -14px inset,
+        rgba(244, 67, 54, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
+        rgba(244, 67, 54, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
+        rgba(244, 67, 54, 0.15) 0 16px 32px;
+
+    &:hover {
+        box-shadow: rgba(244, 67, 54, 0.35) 0 -25px 18px -14px inset,
+        rgba(244, 67, 54, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
+        rgba(244, 67, 54, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
+        rgba(244, 67, 54, 0.25) 0 16px 32px;
+        transform: scale(1.05) rotate(-1deg);
+    }
+  }
+}
+
+input{
+    outline: none;
+    padding: 1%;
+    border: solid 2px lightgray;
+    border-radius: 20px;
+    &:focus{
+        border: solid 2px black;
+
+    }
 }
 body {
 }

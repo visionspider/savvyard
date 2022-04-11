@@ -42,9 +42,8 @@ const Wrapper = styled.div`
   position: sticky;
   top: 0px;
   z-index: 2;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
-  border: solid 1px red;
   &.scrollDown {
     top: -15vh;
   }
@@ -67,7 +66,8 @@ const OptionDiv = styled.div`
     }
   }
 
-  &.dropdown:hover {
+  &.dropdown:hover,
+  &.dropdown:active {
     .dropbtn {
       /* background-color: RGBA(22, 233, 227, 0.3); */
       border-bottom: solid 5px red;

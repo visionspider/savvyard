@@ -1,13 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-
+// onClick={(ev) => {ev.currentTarget.value}}
 const Devices = ({ device }) => {
+  const [editDevice, setEditDevice] = useState(false);
+  const handleChange = (e) => {
+    const min = document.getElementById("input_min_temperature").value;
+    const max = document.getElementById("input_max_temperature").value;
+    if (min <= max) {
+      device.min = e.target.value;
+    } else if (max >= min) {
+      device.max = e.target.value;
+      console.log(device.max);
+    }
+  };
+
   return (
     <Wrapper>
-      <DeviceContainer>
+      <DeviceContainer value={device.id} onClick={() => setEditDevice(true)}>
         {device.name}
         <br></br> {device.reading}
       </DeviceContainer>
+      {editDevice ? (
+        <Form onSubmit={(ev) => ev.preventDefault()}>
+          <input></input>
+          <label>
+            <span>Min Temperature</span>
+            <input
+              type="range"
+              min="-20"
+              max="50"
+              value={device.min}
+              id="input_min_temperature"
+              step="0.5"
+              onChange={handleChange}
+            />
+          </label>
+
+          <label>
+            <span>Max Temperature</span>
+            <input
+              type="range"
+              min="-20"
+              max="50"
+              value={device.max}
+              id="input_max_temperature"
+              step="0.5"
+              onChange={handleChange}
+            />
+          </label>
+          <div style={{ display: "flex", gap: "20px" }}>
+            <button
+              onClick={() => {
+                setEditDevice(false);
+              }}
+              className="cancel"
+            >
+              CANCEL
+            </button>
+            <button
+              type="submit"
+              onClick={() => {
+                setEditDevice(false);
+              }}
+            >
+              SAVE
+            </button>
+          </div>
+        </Form>
+      ) : (
+        <></>
+      )}
     </Wrapper>
   );
 };
@@ -24,35 +86,13 @@ const Wrapper = styled.div`
   } */
 `;
 
-const DeviceContainer = styled.div`
-  font-weight: bold;
-  border-radius: 20px;
-  background-color: #c2fbd7;
-  border-radius: 100px;
-  box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
-    rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
-    rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
-    rgba(44, 187, 99, 0.15) 0 16px 32px;
-  color: green;
+const DeviceContainer = styled.button``;
 
-  display: inline-block;
-
-  padding: 7px 20px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 250ms;
-  border: 0;
-  font-size: 1.5rem;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  &:hover {
-    box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
-      rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
-      rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
-      rgba(44, 187, 99, 0.25) 0 16px 32px;
-    transform: scale(1.05) rotate(-1deg);
-  }
+const Form = styled.form`
+  margin-top: 20px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default Devices;

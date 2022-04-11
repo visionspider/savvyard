@@ -23,7 +23,27 @@ const Home = () => {
     return (
       <Wrapper>
         <EditHeader className={scrollDirection ? "scrollDown" : "scrollUp"}>
-          {edit ? "CANCEL | SAVE" : "EDIT"}
+          {edit ? (
+            <>
+              <CancelBtn
+                className="cancel"
+                onClick={() => {
+                  setEdit(false);
+                }}
+              >
+                CANCEL
+              </CancelBtn>{" "}
+              <SaveBtn>SAVE</SaveBtn>
+            </>
+          ) : (
+            <EditBtn
+              onClick={() => {
+                setEdit(true);
+              }}
+            >
+              EDIT
+            </EditBtn>
+          )}
         </EditHeader>
         {userInfo.userInfo.zones.map((zone) => (
           <Zones key={zone.zoneId} zone={zone} />
@@ -42,22 +62,30 @@ const Wrapper = styled.div`
   padding: 1%;
   border-radius: 20px;
   -webkit-box-shadow: 0px 0px 8px 0px lightgray;
-  box-shadow: 0px 0px 8px 0px red;
+  box-shadow: 0px 0px 8px 0px lightgray;
 `;
 
 const EditHeader = styled.div`
   height: 6vh;
   /* width: 100%; */
-  position: sticky;
-  top: 0px;
+  position: fixed;
+  display: flex;
+  gap: 20px;
+  top: 15vh;
+  background: transparent;
   /* overflow: hidden; */
   transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
-  border: solid 1px red;
+  /* border: solid 1px red; */
   z-index: 1;
   &.scrollDown {
     /* position: none; */
-
+    top: 0vh;
     /* top: -6vh; */
   }
 `;
+
+const EditBtn = styled.button``;
+
+const CancelBtn = styled.button``;
+const SaveBtn = styled(EditBtn)``;
 export default Home;
