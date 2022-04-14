@@ -84,15 +84,24 @@ const OptionContentDiv = styled.div`
   position: absolute;
   right: 0;
   background-color: RGBA(241, 241, 241, 0.9);
-  border-radius: 4px;
   min-width: 250px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 100;
+  border-radius: 20px;
 `;
 
 const Content = styled(NavLink)`
   padding: 12px 16px;
   display: block;
+  /* border-radius: 20px; */
+  :first-child {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  :last-child {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
 `;
 
 export default Header;

@@ -1,25 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RiEyeCloseFill } from "react-icons/ri";
 import styled from "styled-components";
 import { CurrentUserContext } from "../Context/CurrentUserContext";
 import Error from "../Error";
 import useScrollDirection from "../hooks/useScrollDirection.hook";
 import Loading from "../Loading";
+import Add from "./Edit/Add";
+import Delete from "./Edit/Delete";
 import { ZoneArr } from "./temp-user-data";
 import Zones from "./Zones";
 
 const Home = () => {
-  const [edit, setEdit] = useState(false);
   const scrollDirection = useScrollDirection();
-  const { userInfo, status } = useContext(CurrentUserContext);
-
-  console.log(status);
+  const { edit, setEdit, editUserInfo, status, cancelEdit } =
+    useContext(CurrentUserContext);
+  console.log("inside home component ", editUserInfo);
+  // console.log(status);
   if (status.state === "loading") {
     return <Loading />;
   } else if (status.state === "error") {
     return <Error />;
   } else if (status.state === "idle") {
-    console.log(userInfo.userInfo.zones);
+    const zones = [...editUserInfo.userInfo.zones];
+    //When mapping a key is only required for the parent component if using a react fragment we cannot use the shortform when its the parent while mapping
     return (
       <Wrapper>
         <EditHeader className={scrollDirection ? "scrollDown" : "scrollUp"}>
@@ -28,6 +31,7 @@ const Home = () => {
               <CancelBtn
                 className="cancel"
                 onClick={() => {
+                  cancelEdit();
                   setEdit(false);
                 }}
               >
@@ -45,9 +49,21 @@ const Home = () => {
             </EditBtn>
           )}
         </EditHeader>
-        {userInfo.userInfo.zones.map((zone) => (
-          <Zones key={zone.zoneId} zone={zone} />
-        ))}
+        {zones.length !== 0 ? (
+          <>
+            {zones.map((zone, pos) => (
+              <React.Fragment key={zone.zoneId}>
+                {edit && <Delete id={zone.zoneId} type={"zone"} />}
+                <Zones zone={zone} edit={edit} />
+                {zones.length === pos + 1 && edit && (
+                  <Add zone={zone.zoneId} pos={zone.pos} type={"zone"} />
+                )}
+              </React.Fragment>
+            ))}
+          </>
+        ) : (
+          <>{edit && <Add zone={"zoneId1"} pos={0} type={"zone"} />}</>
+        )}
       </Wrapper>
     );
   }
@@ -63,24 +79,20 @@ const Wrapper = styled.div`
   border-radius: 20px;
   -webkit-box-shadow: 0px 0px 8px 0px lightgray;
   box-shadow: 0px 0px 8px 0px lightgray;
+  background-color: lightgray;
 `;
 
 const EditHeader = styled.div`
   height: 6vh;
-  /* width: 100%; */
   position: fixed;
   display: flex;
   gap: 20px;
-  top: 15vh;
+  top: 15.5vh;
   background: transparent;
-  /* overflow: hidden; */
   transition: all cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
-  /* border: solid 1px red; */
-  z-index: 1;
+  z-index: 101;
   &.scrollDown {
-    /* position: none; */
-    top: 0vh;
-    /* top: -6vh; */
+    top: 1vh;
   }
 `;
 

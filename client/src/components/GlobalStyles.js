@@ -13,7 +13,10 @@ const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
     text-decoration: none;
     color: black;
-    background-color: white;
+    div{
+        background-color: white;
+    }
+    
     
 }
 button {
@@ -27,7 +30,7 @@ button {
     rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
     rgba(44, 187, 99, 0.15) 0 16px 32px;
   color: green;
-
+  text-shadow: 1px 1px 1px #A6D7B8;
   display: inline-block;
 
   padding: 7px 20px;

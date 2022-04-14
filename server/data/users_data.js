@@ -8,11 +8,11 @@ const usersData = [
       location: { lat: 45.52099, lng: -73.59463 },
       data: [
         {
-          zoneId: "zoneId",
+          zoneId: "zoneId1",
           zoneData: [
             {
               sensorId: "sensorId",
-              sensorType: "temp-sensor",
+              type: "temp-sensor",
               sensorData: [
                 {
                   timeStamp: "time",
@@ -22,7 +22,7 @@ const usersData = [
             },
             {
               sensorId: "sensorId",
-              sensorType: "humidity-sensor",
+              type: "humidity-sensor",
               sensorData: [
                 {
                   timeStamp: "time",
@@ -35,14 +35,17 @@ const usersData = [
       ],
       zones: [
         {
-          zoneId: "zoneId",
+          zoneId: "zoneId1",
+          pos: 1,
+
           data: {
             zoneName: "Zone 1",
             sensors: [
               {
                 id: "z1sensorId1",
                 name: "Temperature Sensor",
-                sensorType: "temp-sensor",
+                relation: "zoneId1",
+                type: "temp-sensor",
                 pos: 1,
                 reading: "25 °C",
                 min: "24",
@@ -55,7 +58,8 @@ const usersData = [
               {
                 id: "z1sensorId3",
                 name: "Humidity Sensor",
-                sensorType: "humidity-sensor",
+                relation: "zoneId1",
+                type: "humidity-sensor",
                 pos: 3,
                 reading: "50 %",
                 min: "50",
@@ -68,18 +72,20 @@ const usersData = [
             ],
             devices: [
               {
-                id: "deviceId2",
+                id: "z1deviceId2",
                 name: "Heating Fan",
-                deviceType: "heat-fan",
+                relation: "zoneId1",
+                type: "heat-fan",
                 pos: 2,
                 switch: "false",
                 duty: "increaseTemp",
                 listen: "z1sensorId1",
               },
               {
-                id: "deviceId4",
+                id: "z1deviceId4",
                 name: "Cooling Fan",
-                deviceType: "cool-fan",
+                relation: "zoneId1",
+                type: "cool-fan",
                 pos: 4,
                 switch: "false",
                 duty: "lowerTemp",
@@ -89,14 +95,16 @@ const usersData = [
           },
         },
         {
-          zoneId: "zoneId",
+          zoneId: "zoneId2",
+          pos: 2,
           data: {
             zoneName: "Zone 2",
             sensors: [
               {
                 id: "z2sensorId1",
                 name: "Temperature Sensor",
-                sensorType: "temp-sensor",
+                relation: "zoneId2",
+                type: "temp-sensor",
                 pos: 1,
                 reading: "25 °C",
                 min: "24",
@@ -109,7 +117,8 @@ const usersData = [
               {
                 id: "z2sensorId3",
                 name: "Humidity Sensor",
-                sensorType: "humidity-sensor",
+                relation: "zoneId2",
+                type: "humidity-sensor",
                 pos: 3,
                 reading: "50 %",
                 humidityMin: "50",
@@ -122,18 +131,20 @@ const usersData = [
             ],
             devices: [
               {
-                id: "deviceId",
+                id: "z2deviceId2",
                 name: "Heating Fan",
-                deviceType: "heat-fan",
+                relation: "zoneId2",
+                type: "heat-fan",
                 pos: 2,
                 switch: "false",
                 duty: "increaseTemp",
                 listen: "z2sensorId1",
               },
               {
-                id: "deviceId",
+                id: "z2deviceId4",
                 name: "Cooling Fan",
-                deviceType: "cool-fan",
+                relation: "zoneId2",
+                type: "cool-fan",
                 pos: 4,
                 switch: "false",
                 duty: "lowerTemp",
@@ -143,14 +154,16 @@ const usersData = [
           },
         },
         {
-          zoneId: "zoneId",
+          zoneId: "zoneId3",
+          pos: 3,
           data: {
             zoneName: "Zone 3",
             sensors: [
               {
                 id: "z3sensorId1",
                 name: "Temperature Sensor",
-                sensorType: "temp-sensor",
+                relation: "zoneId3",
+                type: "temp-sensor",
                 pos: 1,
                 reading: "25 °C",
                 min: "24",
@@ -163,7 +176,8 @@ const usersData = [
               {
                 id: "z3sensorId3",
                 name: "Humidity Sensor",
-                sensorType: "humidity-sensor",
+                relation: "zoneId3",
+                type: "humidity-sensor",
                 pos: 3,
                 reading: "50 %",
                 humidityMin: "50",
@@ -176,18 +190,20 @@ const usersData = [
             ],
             devices: [
               {
-                id: "deviceId2",
+                id: "z3deviceId2",
                 name: "Heating Fan",
-                deviceType: "heat-fan",
+                relation: "zoneId3",
+                type: "heat-fan",
                 pos: 2,
                 switch: "false",
                 duty: "increaseTemp",
                 listen: "z3sensorId1",
               },
               {
-                id: "deviceId4",
+                id: "z3deviceId4",
                 name: "Cooling Fan",
-                deviceType: "cool-fan",
+                relation: "zoneId3",
+                type: "cool-fan",
                 pos: 4,
                 switch: "false",
                 duty: "lowerTemp",
@@ -197,14 +213,16 @@ const usersData = [
           },
         },
         {
-          zoneId: "zoneId",
+          zoneId: "zoneId4",
+          pos: 4,
           data: {
             zoneName: "Zone 4",
             sensors: [
               {
                 id: "z4sensorId1",
                 name: "Temperature Sensor",
-                sensorType: "temp-sensor",
+                relation: "zoneId4",
+                type: "temp-sensor",
                 pos: 1,
                 reading: "25 °C",
                 min: "24",
@@ -217,7 +235,8 @@ const usersData = [
               {
                 id: "z4sensorId3",
                 name: "Humidity Sensor",
-                sensorType: "humidity-sensor",
+                relation: "zoneId4",
+                type: "humidity-sensor",
                 pos: 3,
                 reading: "50 %",
                 humidityMin: "50",
@@ -230,18 +249,20 @@ const usersData = [
             ],
             devices: [
               {
-                id: "deviceId",
+                id: "z4deviceId2",
                 name: "Heating Fan",
-                deviceType: "heat-fan",
+                relation: "zoneId4",
+                type: "heat-fan",
                 pos: 2,
                 switch: "false",
                 duty: "increaseTemp",
                 listen: "z4sensorId1",
               },
               {
-                id: "deviceId",
+                id: "z4deviceId4",
                 name: "Cooling Fan",
-                deviceType: "cool-fan",
+                relation: "zoneId4",
+                type: "cool-fan",
                 pos: 4,
                 switch: "false",
                 duty: "lowerTemp",
@@ -251,14 +272,16 @@ const usersData = [
           },
         },
         {
-          zoneId: "zoneId",
+          zoneId: "zoneId5",
+          pos: 5,
           data: {
             zoneName: "Zone 5",
             sensors: [
               {
                 id: "z5sensorId1",
                 name: "Temperature Sensor",
-                sensorType: "temp-sensor",
+                relation: "zoneId5",
+                type: "temp-sensor",
                 pos: 1,
                 reading: "25 °C",
                 min: "24",
@@ -271,7 +294,8 @@ const usersData = [
               {
                 id: "z5sensorId3",
                 name: "Humidity Sensor",
-                sensorType: "humidity-sensor",
+                relation: "zoneId5",
+                type: "humidity-sensor",
                 pos: 3,
                 reading: "50 %",
                 humidityMin: "50",
@@ -284,18 +308,20 @@ const usersData = [
             ],
             devices: [
               {
-                id: "deviceId2",
+                id: "z5deviceId2",
                 name: "Heating Fan",
-                deviceType: "heat-fan",
+                relation: "zoneId5",
+                type: "heat-fan",
                 pos: 2,
                 switch: "false",
                 duty: "increaseTemp",
                 listen: "z5sensorId1",
               },
               {
-                id: "deviceId4",
+                id: "z5deviceId4",
                 name: "Cooling Fan",
-                deviceType: "cool-fan",
+                relation: "zoneId5",
+                type: "cool-fan",
                 pos: 4,
                 switch: "false",
                 duty: "lowerTemp",
@@ -305,14 +331,16 @@ const usersData = [
           },
         },
         {
-          zoneId: "zoneId",
+          zoneId: "zoneId6",
+          pos: 6,
           data: {
             zoneName: "Zone 6",
             sensors: [
               {
                 id: "z6sensorId1",
                 name: "Temperature Sensor",
-                sensorType: "temp-sensor",
+                relation: "zoneId6",
+                type: "temp-sensor",
                 pos: 1,
                 reading: "25 °C",
                 min: "24",
@@ -325,7 +353,8 @@ const usersData = [
               {
                 id: "z6sensorId3",
                 name: "Humidity Sensor",
-                sensorType: "humidity-sensor",
+                relation: "zoneId6",
+                type: "humidity-sensor",
                 pos: 3,
                 reading: "50 %",
                 humidityMin: "50",
@@ -338,18 +367,20 @@ const usersData = [
             ],
             devices: [
               {
-                id: "deviceId",
+                id: "z6deviceId2",
                 name: "Heating Fan",
-                deviceType: "heat-fan",
+                relation: "zoneId6",
+                type: "heat-fan",
                 pos: 2,
                 switch: "false",
                 duty: "increaseTemp",
                 listen: "z6sensorId1",
               },
               {
-                id: "deviceId",
+                id: "z6deviceId4",
                 name: "Cooling Fan",
-                deviceType: "cool-fan",
+                relation: "zoneId6",
+                type: "cool-fan",
                 pos: 4,
                 switch: "false",
                 duty: "lowerTemp",
