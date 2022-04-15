@@ -14,7 +14,7 @@ const Home = () => {
   const scrollDirection = useScrollDirection();
   const { edit, setEdit, editUserInfo, status, cancelEdit } =
     useContext(CurrentUserContext);
-  console.log("inside home component ", editUserInfo);
+
   // console.log(status);
   if (status.state === "loading") {
     return <Loading />;

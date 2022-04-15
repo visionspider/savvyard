@@ -9,11 +9,12 @@ const TempFormContent = ({ device, handleChange }) => {
         <input
           type="range"
           min="-20"
-          max="50"
+          max={device.max}
           value={device.min}
           id="input_min"
           step="0.5"
-          onChange={handleChange}
+          onChange={(ev) => handleChange(ev, "sensor")}
+          style={{ minWidth: "90%" }}
         />
       </label>
 
@@ -21,12 +22,13 @@ const TempFormContent = ({ device, handleChange }) => {
         <span>Max Temperature ({device.max})</span>
         <input
           type="range"
-          min="-20"
+          min={device.min}
           max="50"
           value={device.max}
           id="input_max"
           step="0.5"
-          onChange={handleChange}
+          onChange={(ev) => handleChange(ev, "sensor")}
+          style={{ minWidth: "90%" }}
         />
       </label>
     </>

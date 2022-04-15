@@ -9,7 +9,6 @@ const Zones = ({ zone, edit }) => {
   let deviceArr = [...data.sensors, ...data.devices].sort(
     (device1, device2) => device1.pos - device2.pos
   );
-  console.log("device arr = ", deviceArr);
 
   return (
     <Wrapper>

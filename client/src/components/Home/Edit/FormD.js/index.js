@@ -1,18 +1,68 @@
-import React from "react";
+import _ from "lodash";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { CurrentUserContext } from "../../../Context/CurrentUserContext";
 import FanFormContent from "./FanFormContent";
 import HumidityFormContent from "./HumidityFormContent";
 import TempFormContent from "./TempFormContent";
 
 const FormD = ({ device, setEditDevice }) => {
-  const handleChange = (e) => {
-    const min = document.getElementById("input_min").value;
-    const max = document.getElementById("input_max").value;
-    if (min <= max) {
-      device.min = e.target.value;
-    } else if (max >= min) {
-      device.max = e.target.value;
-      console.log(device.max);
+  const {
+    editUserInfo,
+    setEditUserInfo,
+    sortEditUserInfoByPos,
+    editSensorOrDevice,
+    cancelEdit,
+    getSensor,
+  } = useContext(CurrentUserContext);
+
+  const handleChange = (e, type, btnClick = false) => {
+    const deviceClone = _.cloneDeep(device);
+    let check = false;
+    if (type === "sensor") {
+      //input type range
+      const min = document.getElementById("input_min").value;
+      const max = document.getElementById("input_max").value;
+      if (min <= deviceClone.max && +min !== +device.min) {
+        deviceClone.min = e.target.value;
+        // console.log("min = ", deviceClone.min);
+        check = true;
+      } else if (max >= deviceClone.min && +max !== +deviceClone.max) {
+        deviceClone.max = e.target.value;
+        // console.log("max = ", device.max);
+        check = true;
+      }
+    } else if (type === "fan") {
+      //input type button
+      //   console.log("fan");
+      const switchOffOn =
+        document.getElementById("input_switch").value === "true" ? true : false;
+      const listenSensor = document.getElementById("input_sensor").value;
+
+      if (btnClick) {
+        deviceClone.switch = !switchOffOn;
+        check = true;
+      } else if (listenSensor !== deviceClone.listen) {
+        deviceClone.listen = listenSensor;
+        check = true;
+        // console.log("listening to ", deviceClone.listen);
+      }
+
+      //   console.log(typeof deviceClone.switch, typeof switchOffOn);
+    }
+    if (check) {
+      //modifying data
+
+      const deviceArr = sortEditUserInfoByPos(editUserInfo);
+      [...deviceArr].forEach((devices, pos) =>
+        devices.forEach((device, pos2) => {
+          if (device.id === deviceClone.id) {
+            deviceArr[pos][pos2] = deviceClone;
+          }
+        })
+      );
+      //changing state
+      setEditUserInfo(editSensorOrDevice(deviceArr));
     }
   };
   return (
@@ -22,7 +72,11 @@ const FormD = ({ device, setEditDevice }) => {
       ) : device.type === "temp-sensor" ? (
         <TempFormContent device={device} handleChange={handleChange} />
       ) : device.type.includes("fan") ? (
-        <FanFormContent device={device} handleChange={handleChange} />
+        <FanFormContent
+          device={device}
+          handleChange={handleChange}
+          getSensor={getSensor}
+        />
       ) : (
         <></>
       )}
@@ -30,6 +84,7 @@ const FormD = ({ device, setEditDevice }) => {
         <button
           onClick={() => {
             setEditDevice(false);
+            cancelEdit(device.id);
           }}
           className="cancel"
         >
@@ -51,6 +106,7 @@ const FormD = ({ device, setEditDevice }) => {
 const Form = styled.form`
   margin: 20px;
   padding: 2%;
+  min-width: 310px;
   gap: 20px;
   display: flex;
   flex-direction: column;

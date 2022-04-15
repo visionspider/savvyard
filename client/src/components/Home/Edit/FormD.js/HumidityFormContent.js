@@ -6,14 +6,16 @@ const HumidityFormContent = ({ device, handleChange }) => {
       <input></input>
       <label>
         <span>Min Humidity ({device.min})</span>
+        <br></br>
         <input
           type="range"
           min="0"
-          max="100"
+          max={device.max}
           value={device.min}
           id="input_min"
           step="0.5"
-          onChange={handleChange}
+          onChange={(ev) => handleChange(ev, "sensor")}
+          style={{ minWidth: "90%" }}
         />
       </label>
 
@@ -21,12 +23,13 @@ const HumidityFormContent = ({ device, handleChange }) => {
         <span>Max Humidity ({device.max})</span>
         <input
           type="range"
-          min="0"
+          min={device.min}
           max="100"
           value={device.max}
           id="input_max"
           step="0.5"
-          onChange={handleChange}
+          onChange={(ev) => handleChange(ev, "sensor")}
+          style={{ minWidth: "90%" }}
         />
       </label>
     </>

@@ -77,9 +77,9 @@ export const CurrentUserContextProvider = ({ children }) => {
       });
   }, [userId]);
 
-  const sortEditUserInfoByPos = () => {
+  const sortEditUserInfoByPos = (data) => {
     const deviceArr = [];
-    const zones = _.cloneDeep(editUserInfo.userInfo.zones);
+    const zones = _.cloneDeep(data.userInfo.zones);
     zones.forEach((zone) =>
       deviceArr.push(
         [...zone.data.sensors, ...zone.data.devices].sort(
@@ -129,7 +129,7 @@ export const CurrentUserContextProvider = ({ children }) => {
     //find zone or device by id
     // increase or decrease pos of other zones or devices by 1
     const clone = _.cloneDeep(editUserInfo);
-    const deviceArr = sortEditUserInfoByPos();
+    const deviceArr = sortEditUserInfoByPos(editUserInfo);
     // console.log(clone, id);
     if (type === "zone") {
       // console.log("in zone");
@@ -159,7 +159,7 @@ export const CurrentUserContextProvider = ({ children }) => {
     // increase or decrease pos of other zones or devices by 1
     const clone = _.cloneDeep(editUserInfo);
 
-    const deviceArr = sortEditUserInfoByPos();
+    const deviceArr = sortEditUserInfoByPos(editUserInfo);
 
     if (type === "zone") {
       clone.userInfo.zones.splice(zoneOrDevice.pos - 1, 0, zoneOrDevice);
@@ -186,10 +186,40 @@ export const CurrentUserContextProvider = ({ children }) => {
     }
   };
 
-  const cancelEdit = () => {
+  const cancelEdit = (id = false) => {
     const clone = _.cloneDeep(userInfo);
+    if (id) {
+      const deviceArr = sortEditUserInfoByPos(userInfo);
+      const deviceArr2 = sortEditUserInfoByPos(editUserInfo);
+      let editDevice = {};
+      [...deviceArr].forEach((devices) =>
+        devices.forEach((device) => {
+          if (device.id === id) editDevice = { ...device };
+        })
+      );
+      [...deviceArr2].forEach((devices, pos) =>
+        devices.forEach((device, pos2) => {
+          if (device.id === editDevice.id)
+            deviceArr2[pos][pos2] = { ...editDevice };
+        })
+      );
+      setEditUserInfo(editSensorOrDevice(deviceArr2));
+    } else {
+      setEditUserInfo(clone);
+    }
+  };
 
-    setEditUserInfo(clone);
+  const getSensor = (relation) => {
+    const deviceArr = sortEditUserInfoByPos(userInfo);
+    const sensorListForZone = [];
+    [...deviceArr].forEach((devices) =>
+      devices.forEach((device) => {
+        if (device.relation === relation)
+          if (device.type.includes("temp") || device.type.includes("humidity"))
+            sensorListForZone.push(device);
+      })
+    );
+    return sensorListForZone;
   };
   return (
     <CurrentUserContext.Provider
@@ -205,6 +235,7 @@ export const CurrentUserContextProvider = ({ children }) => {
         deleteZoneOrDevice,
         addZoneOrDevice,
         cancelEdit,
+        getSensor,
         weather,
         setWeather,
         status,
