@@ -12,7 +12,7 @@ import Zones from "./Zones";
 
 const Home = () => {
   const scrollDirection = useScrollDirection();
-  const { edit, setEdit, editUserInfo, status, cancelEdit } =
+  const { edit, setEdit, editUserInfo, status, cancelEdit, handleSubmit } =
     useContext(CurrentUserContext);
 
   // console.log(status);
@@ -37,7 +37,14 @@ const Home = () => {
               >
                 CANCEL
               </CancelBtn>{" "}
-              <SaveBtn>SAVE</SaveBtn>
+              <SaveBtn
+                onClick={() => {
+                  setEdit(false);
+                  handleSubmit();
+                }}
+              >
+                SAVE
+              </SaveBtn>
             </>
           ) : (
             <EditBtn

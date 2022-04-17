@@ -4,7 +4,7 @@ export const usersData = {
     name: "John",
     email: "john@mcjohn.com",
     templateVer: "0.1",
-    location: { lat: 45.52099, lng: -73.59463 },
+    location: { lat: 45.52099, lng: -73.59463, timezone: "America/Toronto" },
     data: [
       {
         zoneId: "zoneId1",
@@ -14,8 +14,20 @@ export const usersData = {
             type: "temp-sensor",
             sensorData: [
               {
-                timeStamp: "1",
-                temp: "28",
+                timeStamp: "1650123248208",
+                reading: "28",
+              },
+              {
+                timeStamp: "1650123588434",
+                reading: "27",
+              },
+              {
+                timeStamp: "1650123910766",
+                reading: "28",
+              },
+              {
+                timeStamp: "1650135025592",
+                reading: "29",
               },
             ],
           },
@@ -24,68 +36,20 @@ export const usersData = {
             type: "humidity-sensor",
             sensorData: [
               {
-                timeStamp: "1",
-                humidity: "50",
+                timeStamp: "1650123248208",
+                reading: "40",
               },
-            ],
-          },
-          {
-            sensorId: "z1sensorId1",
-            type: "temp-sensor",
-            sensorData: [
               {
-                timeStamp: "2",
-                temp: "27",
+                timeStamp: "1650123588434",
+                reading: "48",
               },
-            ],
-          },
-          {
-            sensorId: "z1sensorId3",
-            type: "humidity-sensor",
-            sensorData: [
               {
-                timeStamp: "2",
-                humidity: "48",
+                timeStamp: "1650123910766",
+                reading: "47",
               },
-            ],
-          },
-          {
-            sensorId: "z1sensorId1",
-            type: "temp-sensor",
-            sensorData: [
               {
-                timeStamp: "3",
-                temp: "28",
-              },
-            ],
-          },
-          {
-            sensorId: "z1sensorId3",
-            type: "humidity-sensor",
-            sensorData: [
-              {
-                timeStamp: "3",
-                humidity: "47",
-              },
-            ],
-          },
-          {
-            sensorId: "z1sensorId1",
-            type: "temp-sensor",
-            sensorData: [
-              {
-                timeStamp: "4",
-                temp: "29",
-              },
-            ],
-          },
-          {
-            sensorId: "z1sensorId3",
-            type: "humidity-sensor",
-            sensorData: [
-              {
-                timeStamp: "4",
-                humidity: "45",
+                timeStamp: "1650135025592",
+                reading: "45",
               },
             ],
           },

@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import styled from "styled-components";
 //make lines thick, more vivid, titles bigger
 ChartJS.register(
   CategoryScale,
@@ -22,9 +23,23 @@ ChartJS.register(
 );
 const Chart = ({ chartData, chartOptions }) => {
   return (
-    <div>
-      <Line data={chartData} options={chartOptions} />
-    </div>
+    <Wrapper>
+      <ChartContainer>
+        <Line data={chartData} options={chartOptions} />
+      </ChartContainer>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  /* align-self: center; */
+
+  height: 75vh;
+`;
+const ChartContainer = styled.div`
+  width: 60%;
+`;
 export default Chart;

@@ -18,7 +18,7 @@ const Form = ({ set, zone, pos, type }) => {
       deviceInfo.name = deviceName.value;
       deviceInfo.pos = pos + 1;
       deviceInfo.relation = zone;
-      console.log(zone);
+      // console.log(zone);
       deviceInfo.id = deviceInfo.id.replace("NUM", zone[zone.length - 1]);
       deviceInfo.id = deviceInfo.id.replace("NUM", pos + 1);
 
@@ -29,7 +29,7 @@ const Form = ({ set, zone, pos, type }) => {
       zoneInfo.data.zoneName = zoneName.value;
       zoneInfo.pos = pos + 1;
       zoneInfo.zoneId = zoneInfo.zoneId.replace("NUM", pos + 1);
-      console.log(zoneInfo);
+      // console.log(zoneInfo);
       addZoneOrDevice(zoneInfo, type);
     }
     set(false);

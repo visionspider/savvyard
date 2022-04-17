@@ -14,9 +14,8 @@ export const CurrentUserContextProvider = ({ children }) => {
     msg: "",
     status: "",
   });
-  //SUGGESTIONS of doing things differently : when I cancel refetch the data from the server
   const userId = "6db20ea8-b66c-4d00-90b2-33989a4a5ec8";
-  // getUser = () => {};
+
   useEffect(() => {
     console.log("Starting fetches");
     fetch(`/api/get-user/${userId}`)
@@ -25,13 +24,11 @@ export const CurrentUserContextProvider = ({ children }) => {
         console.log(data.message, data);
         console.log("checking data");
         if (data.status === 200) {
-          //PROBLEM IS HERE
-          console.log("hello");
-          setUserInfo({ ...data.data, copy: 1 });
-          setEditUserInfo({ ...data.data, copy: 2 });
+          setUserInfo({ ...data.data });
+          setEditUserInfo({ ...data.data });
 
-          //MAYBE?
-          //seperate fetches
+          //advised to seperate fetches into functions
+          //i.e //const getUser = () => {}; const getWeather = () = {};
           return fetch(`/api/weather/${userId}`)
             .then((res) => res.json())
             .then((data) => {
@@ -210,7 +207,7 @@ export const CurrentUserContextProvider = ({ children }) => {
   };
 
   const getSensor = (relation) => {
-    const deviceArr = sortEditUserInfoByPos(userInfo);
+    const deviceArr = sortEditUserInfoByPos(editUserInfo);
     const sensorListForZone = [];
     [...deviceArr].forEach((devices) =>
       devices.forEach((device) => {
@@ -221,6 +218,50 @@ export const CurrentUserContextProvider = ({ children }) => {
     );
     return sensorListForZone;
   };
+
+  const handleSubmit = (ev = false) => {
+    if (ev) {
+      ev.preventDefault();
+    }
+    fetch(`/api/update`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: editUserInfo.userInfo.zones,
+        _id: editUserInfo._id,
+        type: "zones",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.message, data);
+        console.log("checking data");
+        if (data.status === 200) {
+          console.log(data.data);
+          setUserInfo({ ...data.data });
+          setEditUserInfo({ ...data.data });
+        } else {
+          setStatus({
+            ...status,
+            state: "error",
+            msg: data.message,
+            status: data.status,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setStatus({
+          ...status,
+          state: "error",
+          msg: error.message,
+          status: error.status,
+        });
+      });
+  };
+
   return (
     <CurrentUserContext.Provider
       value={{
@@ -236,6 +277,7 @@ export const CurrentUserContextProvider = ({ children }) => {
         addZoneOrDevice,
         cancelEdit,
         getSensor,
+        handleSubmit,
         weather,
         setWeather,
         status,

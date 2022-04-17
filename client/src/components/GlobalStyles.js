@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
     text-decoration: none;
     color: black;
-    div{
+    div {
         background-color: white;
     }
     
@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
 button {
     cursor: pointer;
     font-weight: bold;
+    width: 99%;
   border-radius: 20px;
   background-color: #c2fbd7;
   border-radius: 100px;

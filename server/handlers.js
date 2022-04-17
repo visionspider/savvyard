@@ -53,39 +53,48 @@ const getUser = async (req, res) => {
 const updateUserInfo = async (req, res) => {
   await client.connect();
   try {
-    const { _id, remove = false, add = false } = req.body;
-
+    const { _id, data = false, type = false } = req.body;
+    console.log("ID: ", _id, "DATA: ", data, "TYPE: ", type);
+    //type can be zones / personal-info
     const user = await DB.collection(USERS_DATA).findOne({ _id });
-    if (user && remove) {
-      console.log("inside user and remove and add");
+    if (data && user && type === "zones") {
+      console.log("just checked DATA, USER AND TYPE = ZONES");
       // console.log(remove.list.zones > 0);
       let result = null;
-      if (remove.list.zones.length > 0) {
-        result = await Promise.all(
-          remove.list.zones.map((zone, pos) => {
-            console.log("in map = ", zone);
-            return DB.collection(USERS_DATA).updateOne(
-              { _id },
-              { $pull: { [`userInfo.zones${[pos]}.zoneId`]: zone } }
-            ); //`userInfo.zones.${zone}`
-          })
-        );
-      }
-      // const removeInfo = await DB.collection(USERS_DATA).deleteOne({ _id });
-      return res.status(200).json({
-        status: 200,
 
-        message: "Updated user successfully.",
+      result = await DB.collection(USERS_DATA).updateOne(
+        { _id, [`userInfo.zones`]: user.userInfo.zones },
+        { $set: { [`userInfo.zones`]: data } }
+      );
+      console.log(result.modifiedCount);
+      if (result.modifiedCount > 0) {
+        const updatedUser = await DB.collection(USERS_DATA).findOne({ _id });
+        return res.status(200).json({
+          status: 200,
+
+          message: "Updated user zones successfully.",
+          data: updatedUser,
+        });
+      } else {
+        //IF THERE IS NO CHANGES TO BE MADE IT GOES HERE. ADD A RESPONSE THAT ='s NO CHANGES MADE as message for user
+        return res.status(404).json({
+          status: 404,
+
+          message: "Could not update due to unknown ID.",
+          data: _id,
+        });
+      }
+    } else if (data && user && type === "personal-info") {
+      console.log("just checked DATA, USER AND TYPE = personal-info");
+      return;
+    } else {
+      return res.status(404).json({
+        status: 404,
+
+        message: "Could not update.",
         data: result,
       });
-    } else if (user && add) {
-      console.log("inside user and add");
-      return;
-    } else if (user && remove) {
-      console.log("inside user and remove");
-      return;
     }
-    return;
   } catch (err) {
     res.status(500).json({
       status: 500,

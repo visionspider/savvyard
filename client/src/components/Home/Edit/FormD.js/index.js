@@ -14,6 +14,7 @@ const FormD = ({ device, setEditDevice }) => {
     editSensorOrDevice,
     cancelEdit,
     getSensor,
+    handleSubmit,
   } = useContext(CurrentUserContext);
 
   const handleChange = (e, type, btnClick = false) => {
@@ -65,8 +66,14 @@ const FormD = ({ device, setEditDevice }) => {
       setEditUserInfo(editSensorOrDevice(deviceArr));
     }
   };
+
   return (
-    <Form onSubmit={(ev) => ev.preventDefault()}>
+    <Form
+      onSubmit={(ev) => {
+        setEditDevice(false);
+        handleSubmit(ev);
+      }}
+    >
       {device.type === "humidity-sensor" ? (
         <HumidityFormContent device={device} handleChange={handleChange} />
       ) : device.type === "temp-sensor" ? (
@@ -90,14 +97,7 @@ const FormD = ({ device, setEditDevice }) => {
         >
           CANCEL
         </button>
-        <button
-          type="submit"
-          onClick={() => {
-            setEditDevice(false);
-          }}
-        >
-          SAVE
-        </button>
+        <button type="submit">SAVE</button>
       </div>
     </Form>
   );

@@ -1,6 +1,6 @@
 // const { request } = require("express");
 const request = require("request-promise");
-
+const { DateTime } = require("luxon");
 const opencage = require("opencage-api-client");
 require("dotenv").config();
 
@@ -10,10 +10,21 @@ const getPositionFromAddress = (address) => {
     key: process.env.OPENCAGE_API_KEY,
     q: address,
   };
+  // console.log(.toISO());
 
   return opencage
     .geocode(requestObj)
-    .then((res) => res.results[0].geometry)
+    .then((res) => {
+      // console.log(
+      //   DateTime.now()
+      //     .setZone(res.results[0].annotations.timezone.name)
+      //     .setLocale("en")
+      //     .toLocaleString(DateTime.DATE_FULL)
+      // );
+      console.log(res.results[0].annotations.timezone.name);
+      return res.results[0].geometry;
+      // const { name } = coordinates.annotations.timezone;
+    })
     .catch((err) => err.message);
 };
 // const getWeather = () => {
@@ -27,6 +38,7 @@ const getPositionFromAddress = (address) => {
 
 const getWeatherFromCoordinates = (coordinates) => {
   const { lat, lng } = coordinates;
+
   const OPEN_WEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
 
   return request(
@@ -37,6 +49,7 @@ const getWeatherFromCoordinates = (coordinates) => {
     .then((res) => JSON.parse(res))
     .then((data) => data)
     .catch((err) => err);
+  //FOR OPEN-METEO API
   // return request(`https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(
   //   2
   // )}&longitude=${lng.toFixed(
