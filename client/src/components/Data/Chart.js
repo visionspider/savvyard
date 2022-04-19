@@ -25,7 +25,16 @@ const Chart = ({ chartData, chartOptions }) => {
   return (
     <Wrapper>
       <ChartContainer>
-        <Line data={chartData} options={chartOptions} />
+        <Line
+          data={chartData}
+          options={chartOptions}
+          style={{
+            background: "white",
+            borderRadius: "20px",
+            padding: "1%",
+            width: "100%",
+          }}
+        />
       </ChartContainer>
     </Wrapper>
   );
@@ -34,12 +43,15 @@ const Chart = ({ chartData, chartOptions }) => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  border-radius: 20px;
+  background: transparent;
+  width: 100%;
   /* align-items: center; */
   /* align-self: center; */
-
-  height: 75vh;
 `;
 const ChartContainer = styled.div`
-  width: 60%;
+  width: 100%;
+
+  background: transparent;
 `;
 export default Chart;

@@ -5,6 +5,8 @@ import fileSaver from "file-saver";
 import styled from "styled-components";
 import { CurrentUserContext } from "../Context/CurrentUserContext";
 import { usersData } from "./users_data";
+import _ from "lodash";
+import Error from "../Error";
 const Data = () => {
   const { editUserInfo } = useContext(CurrentUserContext);
   const [chartData, setChartData] = useState({ datasets: [] });
@@ -25,6 +27,7 @@ const Data = () => {
     zones.forEach((zone) => {
       if (zone.zoneId === zoneId) {
         setSensorData(zone.zoneData);
+        setSelectedSensor([]);
       }
     });
   };
@@ -35,48 +38,53 @@ const Data = () => {
     setSelectedSensor(ev.target.value);
   };
 
+  const cloneUser = _.cloneDeep(editUserInfo);
   const readings = [];
   const type = [];
   const timeStamp = [];
   const zones = [];
-  usersData.userInfo.data.forEach((zone, pos) => {
+  cloneUser.userInfo?.data.forEach((zone, pos) => {
     zones.push(zone);
-    if (pos === 0) {
-      zone.zoneData.forEach((zDevices) => {
-        if (zDevices.sensorId === selectedSensor) {
-          type.push(zDevices.type);
-          zDevices.sensorData.forEach((sensorD) => {
-            readings.push(sensorD.reading);
-            timeStamp.push(
-              DateTime.fromMillis(+sensorD.timeStamp)
-                .setLocale("en")
-                .toLocaleString(DateTime.DATETIME_SHORT)
-            );
-          });
+    // if (pos === 0) {
+    zone.zoneData.forEach((zDevices) => {
+      if (zDevices.id === selectedSensor) {
+        type.push(zDevices.type);
+        zDevices.sensorData.forEach((sensorD) => {
+          readings.push(sensorD.reading);
+          timeStamp.push(
+            DateTime.fromMillis(+sensorD.timeStamp)
+              .setLocale("en")
+              .toLocaleString(DateTime.TIME_SIMPLE)
+          );
+        });
 
-          // names.push(zDevices.sensorId);
-        }
-      });
-    }
+        // names.push(zDevices.id);
+      }
+    });
+    // }
   });
+  console.log(readings);
+  console.log(timeStamp);
+  console.log(zones);
+
   //IN MS
   // +DateTime.now().setZone(usersData.userInfo.location.timezone);
-
+  //ENV to IGNORE THE FILE THAT THE USER WILL DOWNLOAD
+  // X AXIS AND Y AXIS LABEL
   //IN READABLE FORMAT
   // DateTime.now()
   //     .setZone(usersData.userInfo.location.timezone)
   //     .setLocale("en")
   //     .toLocaleString(DateTime.DATETIME_SHORT)
   // console.log(+DateTime.now().setZone(usersData.userInfo.location.timezone));
-  console.log(readings);
-  console.log(timeStamp);
-  console.log(zones);
+
   useEffect(() => {
     setChartData({
       labels: timeStamp,
       datasets: [
         {
           label: selectedSensor,
+
           data: readings,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
@@ -98,82 +106,154 @@ const Data = () => {
         },
       ],
     });
-    setChartOptions({
-      responsive: true,
-      plugins: {
-        Legend: {
-          position: "top",
+    setChartOptions(
+      {
+        //TRYING TO GET A TITLE FOR X AND Y AXIS BUT ITS NOT WORKING
+        // options: {
+        responsive: true,
+        plugins: {
+          Legend: {
+            position: "top",
+          },
+
+          // scales: {
+
+          // x: {
+          //   type: "time",
+          //   display: true,
+          //   title: { display: true, text: "time" },
+          // },
+          // y: { display: true, title: { display: true, text: "Celsius" } },
+          // },
         },
         title: {
           display: true,
           text: `Greenhouse Readings${type.length > 0 && " of " + type[0]}`,
         },
-      },
-    });
+      }
+      // }
+    );
   }, [selectedSensor]);
-
-  return (
-    <>
-      <form>
-        <label htmlFor="zones">Choose a Zone:</label>
-        <select
-          id="zones"
-          name="zones"
-          defaultValue={"none"}
-          onChange={selectZone}
+  if (editUserInfo) {
+    return (
+      <Wrapper>
+        <form
+          style={{
+            display: "flex",
+            alignContent: "center",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            background: "transparent",
+            gap: "20px",
+          }}
         >
-          <option value="none" disabled hidden>
-            Select an Option
-          </option>
-          {zones.map((zone) => (
-            <option key={zone.zoneId} value={zone.zoneId}>
-              {zone.zoneId}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="sensors">Choose a sensor:</label>
-        <select
-          id="sensors"
-          name="sensors"
-          defaultValue={"none"}
-          onChange={selectSensor}
-        >
-          <option value="none" disabled hidden>
-            Select an Option
-          </option>
-          {sensorData.map((sensor) => (
-            <option key={sensor.sensorId} value={sensor.sensorId}>
-              {sensor.sensorId} - {sensor.type}
-            </option>
-          ))}
-        </select>
-      </form>
-      {selectedSensor && (
-        <>
-          <Chart chartData={chartData} chartOptions={chartOptions} />
-          <div
+          <label
+            htmlFor="zones"
             style={{
+              height: "100%",
               display: "flex",
-              alignContent: "center",
-              justifyContent: "center",
+              alignSelf: "center",
             }}
           >
-            <button
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexWrap: "wrap",
-                margin: "0 5% 5% 5%",
-              }}
-              onClick={saveFile}
+            Choose a Zone:
+          </label>
+          <select
+            id="zones"
+            name="zones"
+            defaultValue={"none"}
+            onChange={selectZone}
+            style={{
+              borderRadius: "20px",
+              height: "100%",
+              display: "flex",
+              alignSelf: "center",
+            }}
+          >
+            <option value="none" disabled hidden>
+              Select an Option
+            </option>
+            {zones.map((zone) => (
+              <option key={zone.zoneId} value={zone.zoneId}>
+                {zone.zoneName}
+              </option>
+            ))}
+          </select>
+          <label
+            htmlFor="sensors"
+            style={{
+              height: "100%",
+              display: "flex",
+              alignSelf: "center",
+            }}
+          >
+            Choose a sensor:
+          </label>
+          <select
+            id="sensors"
+            name="sensors"
+            defaultValue={"none"}
+            onChange={selectSensor}
+            style={{
+              borderRadius: "20px",
+              height: "100%",
+              display: "flex",
+              alignSelf: "center",
+            }}
+          >
+            <option
+              value="none"
+              disabled={selectedSensor.length ? true : false}
+              hidden={selectedSensor.length ? true : false}
             >
-              Download File
-            </button>
-          </div>
-        </>
-      )}
-    </>
-  );
+              Select an Option
+            </option>
+            {sensorData.map((sensor) => (
+              <option key={sensor.id} value={sensor.id}>
+                {sensor.name} - {sensor.type}
+              </option>
+            ))}
+          </select>
+          <DownloadBtn
+            visible={selectedSensor.length ? true : false}
+            onClick={saveFile}
+          >
+            Download File
+          </DownloadBtn>
+        </form>
+        {selectedSensor && (
+          <>
+            <Chart chartData={chartData} chartOptions={chartOptions} />
+          </>
+        )}
+      </Wrapper>
+    );
+  } else {
+    <Error />;
+  }
 };
-
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 8px 0px lightgray;
+  box-shadow: 0px 0px 8px 0px lightgray;
+  background-color: lightgray;
+`;
+const DownloadBtn = styled.button`
+  /* position: relative; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-content: center; */
+  /* flex-wrap: wrap; */
+  // margin: 0 5% 5% 5%;
+  padding: 0.5% 2%;
+  width: auto;
+  visibility: ${(p) => (p.visible ? "visible" : "hidden")};
+`;
 export default Data;

@@ -8,6 +8,7 @@ export const CurrentUserContextProvider = ({ children }) => {
   const [editUserInfo, setEditUserInfo] = useState({});
   const [edit, setEdit] = useState(false);
   const [weather, setWeather] = useState({});
+  const [unitChange, setUnitChange] = useState(false);
   //status is a indicator for finishing fetch data in this context file
   const [status, setStatus] = useState({
     state: "loading",
@@ -16,8 +17,7 @@ export const CurrentUserContextProvider = ({ children }) => {
   });
   const userId = "6db20ea8-b66c-4d00-90b2-33989a4a5ec8";
 
-  useEffect(() => {
-    console.log("Starting fetches");
+  const getUser = () => {
     fetch(`/api/get-user/${userId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -26,34 +26,8 @@ export const CurrentUserContextProvider = ({ children }) => {
         if (data.status === 200) {
           setUserInfo({ ...data.data });
           setEditUserInfo({ ...data.data });
-
           //advised to seperate fetches into functions
           //i.e //const getUser = () => {}; const getWeather = () = {};
-          return fetch(`/api/weather/${userId}`)
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data.message);
-              if (data.status === 200) {
-                setWeather(data.data);
-                setStatus({ ...status, state: "idle" });
-              } else {
-                setStatus({
-                  ...status,
-                  state: "error",
-                  msg: data.message,
-                  status: data.status,
-                });
-              }
-            })
-            .catch((error) => {
-              console.log(error.message);
-              setStatus({
-                ...status,
-                state: "error",
-                msg: error.message,
-                status: error.status,
-              });
-            });
         } else {
           setStatus({
             ...status,
@@ -72,6 +46,39 @@ export const CurrentUserContextProvider = ({ children }) => {
           status: error.status,
         });
       });
+  };
+
+  const getWeather = () => {
+    fetch(`/api/weather/${userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.message);
+        if (data.status === 200) {
+          setWeather(data.data);
+          setStatus({ ...status, state: "idle" });
+        } else {
+          setStatus({
+            ...status,
+            state: "error",
+            msg: data.message,
+            status: data.status,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setStatus({
+          ...status,
+          state: "error",
+          msg: error.message,
+          status: error.status,
+        });
+      });
+  };
+  useEffect(() => {
+    console.log("Starting fetches");
+    getUser();
+    getWeather();
   }, [userId]);
 
   const sortEditUserInfoByPos = (data) => {
@@ -219,18 +226,19 @@ export const CurrentUserContextProvider = ({ children }) => {
     return sensorListForZone;
   };
 
-  const handleSubmit = (ev = false) => {
+  const handleSubmit = (ev = false, data = false) => {
     if (ev) {
       ev.preventDefault();
     }
+    const clone = _.cloneDeep(editUserInfo);
     fetch(`/api/update`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        data: editUserInfo.userInfo.zones,
-        _id: editUserInfo._id,
+        data: data ? data.userInfo : editUserInfo.userInfo,
+        _id: data ? data._id : editUserInfo._id,
         type: "zones",
       }),
     })
@@ -282,6 +290,10 @@ export const CurrentUserContextProvider = ({ children }) => {
         setWeather,
         status,
         setStatus,
+        unitChange,
+        setUnitChange,
+        getWeather,
+        getUser,
       }}
     >
       {children}

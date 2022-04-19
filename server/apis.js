@@ -21,8 +21,14 @@ const getPositionFromAddress = (address) => {
       //     .setLocale("en")
       //     .toLocaleString(DateTime.DATE_FULL)
       // );
-      console.log(res.results[0].annotations.timezone.name);
-      return res.results[0].geometry;
+      // console.log(res.results[0].annotations.timezone.name);
+      const location = {
+        ...res.results[0].geometry,
+        timezone: res.results[0].annotations.timezone.name,
+      };
+      console.log(location);
+      return location;
+      //TIMEZONE IS JSUT BELOW
       // const { name } = coordinates.annotations.timezone;
     })
     .catch((err) => err.message);

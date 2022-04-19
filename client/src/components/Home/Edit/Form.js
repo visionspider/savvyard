@@ -35,7 +35,6 @@ const Form = ({ set, zone, pos, type }) => {
     set(false);
   };
   return (
-    // <Wrapper>
     <AddForm onSubmit={(ev) => handleSubmit(ev, type)}>
       {type === "device" ? (
         <DeviceFormContent />
@@ -49,19 +48,18 @@ const Form = ({ set, zone, pos, type }) => {
       </CancelBtn>
       <AddBtn type={"submit"}>Add</AddBtn>
     </AddForm>
-    // </Wrapper>
   );
 };
-
-const Wrapper = styled.div``;
 
 const AddForm = styled.form`
   position: relative;
   margin: 20px;
+  min-width: 315px;
+  width: 500px;
   padding: 2%;
   gap: 20px;
   display: flex;
-  background-color: transparent;
+  background-color: white;
   flex-direction: column;
   -webkit-box-shadow: 0px 0px 8px 0px darkgray;
   box-shadow: 0px 0px 8px 0px darkgray;

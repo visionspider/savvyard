@@ -7,7 +7,7 @@ import useScrollDirection from "../hooks/useScrollDirection.hook";
 import Loading from "../Loading";
 import Add from "./Edit/Add";
 import Delete from "./Edit/Delete";
-import { ZoneArr } from "./temp-user-data";
+import ToggleUnit from "../ToggleUnit";
 import Zones from "./Zones";
 
 const Home = () => {
@@ -25,6 +25,8 @@ const Home = () => {
     //When mapping a key is only required for the parent component if using a react fragment we cannot use the shortform when its the parent while mapping
     return (
       <Wrapper>
+        <ToggleUnit />
+
         <EditHeader className={scrollDirection ? "scrollDown" : "scrollUp"}>
           {edit ? (
             <>
@@ -60,16 +62,28 @@ const Home = () => {
           <>
             {zones.map((zone, pos) => (
               <React.Fragment key={zone.zoneId}>
-                {edit && <Delete id={zone.zoneId} type={"zone"} />}
+                {edit && (
+                  <span className="delete">
+                    <Delete id={zone.zoneId} type={"zone"} />
+                  </span>
+                )}
                 <Zones zone={zone} edit={edit} />
                 {zones.length === pos + 1 && edit && (
-                  <Add zone={zone.zoneId} pos={zone.pos} type={"zone"} />
+                  <div className="add">
+                    <Add zone={zone.zoneId} pos={zone.pos} type={"zone"} />
+                  </div>
                 )}
               </React.Fragment>
             ))}
           </>
         ) : (
-          <>{edit && <Add zone={"zoneId1"} pos={0} type={"zone"} />}</>
+          <>
+            {edit && (
+              <div className="add">
+                <Add zone={"zoneId1"} pos={0} type={"zone"} />
+              </div>
+            )}
+          </>
         )}
       </Wrapper>
     );
@@ -87,6 +101,21 @@ const Wrapper = styled.div`
   -webkit-box-shadow: 0px 0px 8px 0px lightgray;
   box-shadow: 0px 0px 8px 0px lightgray;
   background-color: lightgray;
+  span.delete {
+    position: relative;
+    left: 95%;
+  }
+
+  div.add {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+
+    background: transparent;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 8px 0px darkgray;
+    box-shadow: 0px 0px 8px 0px darkgray;
+  }
 `;
 
 const EditHeader = styled.div`

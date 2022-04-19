@@ -9,50 +9,151 @@ const usersData = [
       data: [
         {
           zoneId: "zoneId1",
+          zoneName: "Zone 1",
           zoneData: [
             {
-              sensorId: "z1sensorId1",
+              id: "z1sensorId1",
+              name: "Temperature Sensor",
               type: "temp-sensor",
               sensorData: [
                 {
                   timeStamp: "1650123248208",
+                  unit: "°C",
                   reading: "28",
                 },
                 {
                   timeStamp: "1650123588434",
+                  unit: "°C",
                   reading: "27",
                 },
                 {
                   timeStamp: "1650123910766",
+                  unit: "°C",
                   reading: "28",
                 },
                 {
                   timeStamp: "1650135025592",
+                  unit: "°C",
                   reading: "29",
                 },
               ],
             },
             {
-              sensorId: "z1sensorId3",
+              id: "z1sensorId3",
+              name: "Humidity Sensor",
               type: "humidity-sensor",
               sensorData: [
                 {
                   timeStamp: "1650123248208",
-                  reading: "40",
+                  unit: "%",
+                  reading: "50",
                 },
                 {
                   timeStamp: "1650123588434",
-                  reading: "48",
+                  unit: "%",
+                  reading: "58",
                 },
                 {
                   timeStamp: "1650123910766",
-                  reading: "47",
+                  unit: "%",
+                  reading: "57",
                 },
                 {
                   timeStamp: "1650135025592",
-                  reading: "45",
+                  unit: "%",
+                  reading: "55",
                 },
               ],
+            },
+          ],
+        },
+        {
+          zoneId: "zoneId2",
+          zoneName: "Zone 2",
+          zoneData: [
+            {
+              id: "z2sensorId1",
+              name: "Temperature Sensor",
+              type: "temp-sensor",
+              sensorData: [],
+            },
+            {
+              id: "z2sensorId3",
+              name: "Humidity Sensor",
+              type: "humidity-sensor",
+              sensorData: [],
+            },
+          ],
+        },
+        {
+          zoneId: "zoneId3",
+          zoneName: "Zone 3",
+          zoneData: [
+            {
+              id: "z3sensorId1",
+              name: "Temperature Sensor",
+              type: "temp-sensor",
+              sensorData: [],
+            },
+            {
+              id: "z3sensorId3",
+              name: "Humidity Sensor",
+              type: "humidity-sensor",
+              sensorData: [],
+            },
+          ],
+        },
+        {
+          zoneId: "zoneId4",
+          zoneName: "Zone 4",
+          zoneData: [
+            {
+              id: "z4sensorId1",
+              name: "Temperature Sensor",
+              type: "temp-sensor",
+              sensorData: [],
+            },
+            {
+              id: "z4sensorId3",
+              name: "Humidity Sensor",
+              type: "humidity-sensor",
+              sensorData: [],
+            },
+          ],
+        },
+        {
+          zoneId: "zoneId5",
+          zoneName: "Zone 5",
+          zoneData: [
+            {
+              id: "z5sensorId1",
+              name: "Temperature Sensor",
+              type: "temp-sensor",
+              sensorData: [],
+            },
+            {
+              id: "z5sensorId3",
+              name: "Humidity Sensor",
+              type: "humidity-sensor",
+              sensorData: [],
+            },
+          ],
+        },
+        {
+          zoneId: "zoneId6",
+          zoneName: "Zone 6",
+          zoneData: [
+            {
+              id: "z6sensorId1",
+              name: "Temperature Sensor",
+              type: "temp-sensor",
+              sensorData: [],
+            },
+            {
+              id: "z6sensorId3",
+              name: "Humidity Sensor",
+              type: "humidity-sensor",
+              sensorData: [],
             },
           ],
         },
@@ -71,7 +172,8 @@ const usersData = [
                 relation: "zoneId1",
                 type: "temp-sensor",
                 pos: 1,
-                reading: "25 °C",
+                unit: "°C",
+                reading: "25",
                 min: "24",
                 max: "29",
                 controlTemp: {
@@ -85,7 +187,8 @@ const usersData = [
                 relation: "zoneId1",
                 type: "humidity-sensor",
                 pos: 3,
-                reading: "50 %",
+                unit: "%",
+                reading: "50",
                 min: "50",
                 max: "55",
                 controlHumidity: {
@@ -130,7 +233,8 @@ const usersData = [
                 relation: "zoneId2",
                 type: "temp-sensor",
                 pos: 1,
-                reading: "25 °C",
+                unit: "°C",
+                reading: "25",
                 min: "24",
                 max: "29",
                 controlTemp: {
@@ -144,7 +248,8 @@ const usersData = [
                 relation: "zoneId2",
                 type: "humidity-sensor",
                 pos: 3,
-                reading: "50 %",
+                unit: "%",
+                reading: "50",
                 min: "50",
                 max: "55",
                 controlHumidity: {
@@ -189,7 +294,8 @@ const usersData = [
                 relation: "zoneId3",
                 type: "temp-sensor",
                 pos: 1,
-                reading: "25 °C",
+                unit: "°C",
+                reading: "25",
                 min: "24",
                 max: "29",
                 controlTemp: {
@@ -203,7 +309,8 @@ const usersData = [
                 relation: "zoneId3",
                 type: "humidity-sensor",
                 pos: 3,
-                reading: "50 %",
+                unit: "%",
+                reading: "50",
                 min: "50",
                 max: "55",
                 controlHumidity: {
@@ -248,7 +355,8 @@ const usersData = [
                 relation: "zoneId4",
                 type: "temp-sensor",
                 pos: 1,
-                reading: "25 °C",
+                unit: "°C",
+                reading: "25",
                 min: "24",
                 max: "29",
                 controlTemp: {
@@ -262,7 +370,8 @@ const usersData = [
                 relation: "zoneId4",
                 type: "humidity-sensor",
                 pos: 3,
-                reading: "50 %",
+                unit: "%",
+                reading: "50",
                 min: "50",
                 max: "55",
                 controlHumidity: {
@@ -307,7 +416,8 @@ const usersData = [
                 relation: "zoneId5",
                 type: "temp-sensor",
                 pos: 1,
-                reading: "25 °C",
+                unit: "°C",
+                reading: "25",
                 min: "24",
                 max: "29",
                 controlTemp: {
@@ -321,7 +431,8 @@ const usersData = [
                 relation: "zoneId5",
                 type: "humidity-sensor",
                 pos: 3,
-                reading: "50 %",
+                unit: "%",
+                reading: "50",
                 min: "50",
                 max: "55",
                 controlHumidity: {
@@ -366,7 +477,8 @@ const usersData = [
                 relation: "zoneId6",
                 type: "temp-sensor",
                 pos: 1,
-                reading: "25 °C",
+                unit: "°C",
+                reading: "25",
                 min: "24",
                 max: "29",
                 controlTemp: {
@@ -380,7 +492,8 @@ const usersData = [
                 relation: "zoneId6",
                 type: "humidity-sensor",
                 pos: 3,
-                reading: "50 %",
+                unit: "%",
+                reading: "50",
                 min: "50",
                 max: "55",
                 controlHumidity: {

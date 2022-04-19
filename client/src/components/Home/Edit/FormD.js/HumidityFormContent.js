@@ -3,7 +3,6 @@ import React from "react";
 const HumidityFormContent = ({ device, handleChange }) => {
   return (
     <>
-      <input></input>
       <label>
         <span>Min Humidity ({device.min})</span>
         <br></br>

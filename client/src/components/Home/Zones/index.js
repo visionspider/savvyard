@@ -22,14 +22,22 @@ const Zones = ({ zone, edit }) => {
                   {" "}
                   <Devices device={device} edit={edit} />
                   {deviceArr.length === pos + 1 && edit && (
-                    <Add zone={zoneId} pos={device.pos} type={"device"} />
+                    <div className="add">
+                      <Add zone={zoneId} pos={device.pos} type={"device"} />
+                    </div>
                   )}
                 </React.Fragment>
               );
             })}
           </>
         ) : (
-          <div>{edit && <Add zone={zoneId} pos={0} type={"device"} />}</div>
+          <>
+            {edit && (
+              <div className="add first">
+                <Add zone={zoneId} pos={0} type={"device"} />
+              </div>
+            )}
+          </>
         )}
       </ZoneContainer>
     </Wrapper>
@@ -50,6 +58,7 @@ const ZoneContainer = styled.div`
   flex-wrap: wrap;
   background-color: transparent;
   flex-direction: column;
+
   margin: 1%;
   @media only screen and (min-width: 768px) {
     /* For everything bigger than 768px */
@@ -58,6 +67,11 @@ const ZoneContainer = styled.div`
   }
   h2 {
     background-color: transparent;
+  }
+  .first {
+    justify-self: center;
+    position: relative;
+    top: 8vh;
   }
 `;
 export default Zones;

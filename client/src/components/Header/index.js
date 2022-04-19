@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { RiPlantLine } from "react-icons/ri";
+import { GiGreenhouse } from "react-icons/gi";
 import { BsList } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import useScrollDirection from "../hooks/useScrollDirection.hook";
@@ -13,7 +13,7 @@ const Header = () => {
       className={scrollDirection ? "scrollDown" : "scrollUp"}
     >
       <Title to="/home">
-        <RiPlantLine />
+        <GiGreenhouse />
         Savvyard
       </Title>
       <OptionDiv className={"dropdown"}>
@@ -76,7 +76,7 @@ const OptionDiv = styled.div`
 `;
 
 const OptionIcon = styled(BsList)`
-  font-size: 15vmin;
+  font-size: 13vmin;
 `;
 
 const OptionContentDiv = styled.div`

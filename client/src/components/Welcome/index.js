@@ -5,7 +5,7 @@ import Error from "../Error";
 import Loading from "../Loading";
 
 const Welcome = () => {
-  if (true) {
+  if (false) {
     return <Error />;
   } else {
     return (

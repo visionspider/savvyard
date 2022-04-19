@@ -1,18 +1,45 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { CurrentUserContext } from "../../Context/CurrentUserContext";
 import Delete from "../Edit/Delete";
 import FormD from "../Edit/FormD.js";
 // onClick={(ev) => {ev.currentTarget.value}}
 const Devices = ({ device, edit }) => {
+  const { unitChange } = useContext(CurrentUserContext);
   const [editDevice, setEditDevice] = useState(false);
 
+  const calcFahrenheit = (num) => {
+    //Equations °F = (°C × 9/5) + 32 //°C = (°F − 32) x 5/9
+    return (+num * 9) / 5 + 32;
+  };
+  //add an absolute position for delete icon and add icon
   return (
     <Wrapper>
-      {edit && <Delete id={device.id} type={"device"} />}
+      {edit && (
+        <span className="delete">
+          {" "}
+          <Delete id={device.id} type={"device"} />
+        </span>
+      )}
 
       <DeviceContainer value={device.id} onClick={() => setEditDevice(true)}>
         {device.name}
-        <br></br> {device.reading}
+        <br></br>{" "}
+        {device.unit === "%" ? (
+          <p>
+            {device.reading} {device.unit}
+          </p>
+        ) : device.unit === "°C" ? (
+          unitChange ? (
+            <p>{calcFahrenheit(device.reading)?.toFixed(2)} °F</p>
+          ) : (
+            <p>
+              {(+device.reading).toFixed(2)} {device.unit}
+            </p>
+          )
+        ) : (
+          <></>
+        )}
       </DeviceContainer>
       {editDevice ? (
         <FormD device={device} setEditDevice={setEditDevice} />
@@ -30,7 +57,16 @@ const Wrapper = styled.div`
   background: transparent;
 `;
 
-const DeviceContainer = styled.button``;
+const DeviceContainer = styled.button`
+  p {
+    font-weight: bolder;
+    color: darkgreen;
+    /* color: rgba(0, 0, 0, 0.6); */
+
+    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+      0px -5px 35px rgba(255, 255, 255, 0.3);
+  }
+`;
 
 const Form = styled.form`
   margin: 20px;

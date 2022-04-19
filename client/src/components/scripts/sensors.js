@@ -19,7 +19,7 @@ const { DateTime } = require("luxon");
 const tempSensor = (sensor, device, outdoorTemp) => {
   // console.log(
   //   "SENSOR = ",
-  //   sensor,
+  //   sensor.zoneName,
   //   "DEVICE = ",
   //   device,
   //   "OUTDOORTEMP = ",
@@ -66,7 +66,7 @@ const tempSensor = (sensor, device, outdoorTemp) => {
   //   "SUNSET = ",
   //   +sunset
   // );
-  // console.log(Math.round(Math.round(currentWeather) * 10) / 10);
+
   //LOGIC for TEMPERATURE LOSS/GAIN per MINUTE
   // tempThreshold.forEach((threshold) => {
   let clearSky = -0.01;
@@ -86,11 +86,11 @@ const tempSensor = (sensor, device, outdoorTemp) => {
     } else if (currentWeather > +max) {
       tempChange = currentWeather * (clearSky * 5);
     }
-  } else if (+timezoneDate < +sunrise && +timezoneDate > +sunset) {
+  } else if (+timezoneDate > +sunrise && +timezoneDate > +sunset) {
     if (currentWeather < +min) {
-      tempChange = currentWeather * 0.02;
+      tempChange = -currentWeather * 0.02;
     } else if (currentWeather > +max) {
-      tempChange = currentWeather * 0.01;
+      tempChange = -currentWeather * 0.01;
     }
   }
   // }
@@ -98,7 +98,8 @@ const tempSensor = (sensor, device, outdoorTemp) => {
 
   //TEMP CHANGE BASED ON HEATLOSS
   // console.log("TEMPCHANGE = ", tempChange);
-  sensor.reading = Math.floor(+sensor.reading + tempChange);
+
+  sensor.reading = +sensor.reading + tempChange;
 
   //LOGIC for FAN ACTIVATION AND FAN TEMP REGULATION
 
@@ -122,12 +123,22 @@ const tempSensor = (sensor, device, outdoorTemp) => {
   // console.log(sensor.reading);
   let result = {
     data: {
+      zoneName: sensor.zoneName,
+      relation: sensor.relation,
       id: sensor.id,
+      name: sensor.name,
       type: sensor.type,
-      sensorData: { timeStamp: +timezoneDate, reading: sensor.reading },
+      sensorData: [
+        {
+          timeStamp: +timezoneDate,
+          unit: sensor.unit,
+          reading: sensor.reading,
+        },
+      ],
     },
-    devices: [{ ...sensor }, { ...device }],
   };
+  delete sensor.zoneName;
+  result.devices = [{ ...sensor }, { ...device }];
   // console.log("RESULT = ", result);
   return result;
 };

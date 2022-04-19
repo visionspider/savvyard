@@ -18,5 +18,11 @@ const AddBtn = styled(IoMdAddCircleOutline)`
   cursor: pointer;
   background-color: transparent;
   font-size: 1.2rem;
+  background: white;
+  align-self: center;
+  width: 50px;
+  height: 50px;
+  padding: 1%;
+  border-radius: 50%;
 `;
 export default Add;

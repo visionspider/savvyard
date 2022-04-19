@@ -1,19 +1,32 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as errorimg } from "../assets/error.svg";
+import { CurrentUserContext } from "./Context/CurrentUserContext";
 import Loading from "./Loading";
 const Error = () => {
+  const { getWeather, getUser, status } = useContext(CurrentUserContext);
+  console.log(status);
   return (
     <Wrapper>
       <ErrorContainer>
         <ErrorImg alt="Error" />
 
-        <h1>404 Error</h1>
+        <h1>404 {status.status} Error</h1>
         <p>
+          {status.msg}
           The page you are looking for might have been removed, had its name
           changed or is temporarily unavailable.
         </p>
-        <ReturnBtn to={{ pathname: "/home" }} target="_self">
+        <ReturnBtn
+          to={{ pathname: "/home" }}
+          target="_self"
+          onClick={() => {
+            console.log("Starting fetches");
+            getUser();
+            getWeather();
+          }}
+        >
           Go back to Homepage
         </ReturnBtn>
       </ErrorContainer>
@@ -67,7 +80,7 @@ const ReturnBtn = styled(NavLink)`
   margin: 1%;
   border-radius: 20px; */
   /* CSS */
-
+  margin-bottom: 1%;
   background-color: #c2fbd7;
   border-radius: 100px;
   box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,

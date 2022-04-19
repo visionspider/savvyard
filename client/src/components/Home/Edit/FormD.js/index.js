@@ -36,12 +36,11 @@ const FormD = ({ device, setEditDevice }) => {
     } else if (type === "fan") {
       //input type button
       //   console.log("fan");
-      const switchOffOn =
-        document.getElementById("input_switch").value === "true" ? true : false;
+      // const switchOffOn = document.getElementById("input_switch").value;
       const listenSensor = document.getElementById("input_sensor").value;
 
       if (btnClick) {
-        deviceClone.switch = !switchOffOn;
+        deviceClone.switch = !deviceClone.switch;
         check = true;
       } else if (listenSensor !== deviceClone.listen) {
         deviceClone.listen = listenSensor;
