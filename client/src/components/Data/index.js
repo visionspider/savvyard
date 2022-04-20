@@ -126,7 +126,7 @@ const Data = () => {
     });
     //YOU CAN REPLACE BLOB WITH A FILE DESTINATION I.E
     //process.env.REACT_APP_CLIENT_URL + "/resources/data.text",
-    fileSaver.saveAs(data, `data-${selectedSensor}.text`);
+    fileSaver.saveAs(data, `data-${selectedSensor}.txt`);
   };
   if (status.state === "loading") {
     return <Loading />;
