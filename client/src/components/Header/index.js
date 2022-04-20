@@ -69,7 +69,6 @@ const OptionDiv = styled.div`
   &.dropdown:hover,
   &.dropdown:active {
     .dropbtn {
-      /* background-color: RGBA(22, 233, 227, 0.3); */
       border-bottom: solid 5px red;
     }
   }
@@ -101,6 +100,9 @@ const Content = styled(NavLink)`
   :last-child {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+  }
+  &:hover {
+    background-color: lightgray;
   }
 `;
 

@@ -26,8 +26,6 @@ export const CurrentUserContextProvider = ({ children }) => {
         if (data.status === 200) {
           setUserInfo({ ...data.data });
           setEditUserInfo({ ...data.data });
-          //advised to seperate fetches into functions
-          //i.e //const getUser = () => {}; const getWeather = () = {};
         } else {
           setStatus({
             ...status,

@@ -27,8 +27,8 @@ const App = () => {
     const cloneData = cloneUser.userInfo.data;
     // console.log("USER DATA = ", cloneData);
     // console.log("DATA ARRAY = ", dataArr);
-    console.log(dataArr);
-    console.log(cloneData);
+    // console.log(dataArr);
+    // console.log(cloneData);
     dataArr.forEach((data) =>
       [...cloneData].forEach((zone, pos) => {
         // console.log(cloneData.some((zone) => data.relation === zone.zoneId));
@@ -38,7 +38,7 @@ const App = () => {
         ) {
           zone.zoneData.forEach((sensor, pos2) => {
             if (sensor.id === data.id) {
-              console.log(cloneData[pos].zoneData[pos2]);
+              // console.log(cloneData[pos].zoneData[pos2]);
 
               cloneData[pos].zoneData[pos2].sensorData.push(...data.sensorData);
             } else if (
@@ -48,7 +48,7 @@ const App = () => {
               data.id.includes("sensorId")
             ) {
               delete data.zoneName;
-              console.log("INSIDE MAP AND CREATING NEW SENSOR DATA : ", data);
+              // console.log("INSIDE MAP AND CREATING NEW SENSOR DATA : ", data);
               cloneData[pos].zoneData.push(data);
             }
           });
@@ -59,13 +59,13 @@ const App = () => {
         ) {
           // console.log("I AM AN OUTSIDER");
           if (data.relation !== zone.zoneId) {
-            console.log("BEFORE PUSHING = ", cloneData);
+            // console.log("BEFORE PUSHING = ", cloneData);
             cloneData.push({
               zoneId: data.relation,
               zoneName: data.zoneName,
               zoneData: [{ ...data }],
             });
-            console.log("AFTER PUSHING = ", cloneData);
+            // console.log("AFTER PUSHING = ", cloneData);
           }
         }
       })
@@ -82,12 +82,12 @@ const App = () => {
       const resultArr = getSensors(cloneUser, cloneWeather);
       const deviceArr = sortEditUserInfoByPos(editUserInfo);
       const dataArr = [];
-      console.log(
-        "BEFORE SORTING deviceArr = ",
-        deviceArr,
-        "BEFORE SORTING resultArr = ",
-        resultArr
-      );
+      // console.log(
+      //   "BEFORE SORTING deviceArr = ",
+      //   deviceArr,
+      //   "BEFORE SORTING resultArr = ",
+      //   resultArr
+      // );
       resultArr.forEach((data) => {
         data.devices.forEach((deviceData) =>
           [...deviceArr].forEach((devices, pos) =>
@@ -105,7 +105,7 @@ const App = () => {
       const sortedDevices = editSensorOrDevice(deviceArr);
       sortedDevices.userInfo.data = sortedData;
       const clone = _.cloneDeep(sortedDevices);
-      console.log("THIS IS MY CLONE IN APP = ", clone);
+      // console.log("THIS IS MY CLONE IN APP = ", clone);
       handleSubmit(false, clone);
     }
   }, 10000);

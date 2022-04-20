@@ -6,7 +6,7 @@ import { CurrentUserContext } from "./Context/CurrentUserContext";
 import Loading from "./Loading";
 const Error = () => {
   const { getWeather, getUser, status } = useContext(CurrentUserContext);
-  console.log(status);
+  // console.log(status);
   return (
     <Wrapper>
       <ErrorContainer>

@@ -18,9 +18,10 @@ const Home = () => {
   // console.log(status);
   if (status.state === "loading") {
     return <Loading />;
-  } else if (status.state === "error") {
+  } else if (status.state === "error" || editUserInfo.userInfo === undefined) {
     return <Error />;
   } else if (status.state === "idle") {
+    console.log(editUserInfo);
     const zones = [...editUserInfo.userInfo.zones];
     //When mapping a key is only required for the parent component if using a react fragment we cannot use the shortform when its the parent while mapping
     return (
@@ -85,6 +86,7 @@ const Home = () => {
             )}
           </>
         )}
+        {/* <Success className={"success"}>Saved successfully</Success> */}
       </Wrapper>
     );
   }
@@ -112,9 +114,6 @@ const Wrapper = styled.div`
     flex-direction: column;
 
     background: transparent;
-    border-radius: 50%;
-    -webkit-box-shadow: 0px 0px 8px 0px darkgray;
-    box-shadow: 0px 0px 8px 0px darkgray;
   }
 `;
 
@@ -136,4 +135,45 @@ const EditBtn = styled.button``;
 
 const CancelBtn = styled.button``;
 const SaveBtn = styled(EditBtn)``;
+const Success = styled(EditBtn)`
+  cursor: default;
+  position: fixed;
+  top: 90vh;
+  left: 80vw;
+  width: 250px;
+  opacity: 1;
+  &.success {
+    animation: enter 4s linear forwards, 4s exit 12s linear forwards;
+    @keyframes exit {
+      0% {
+        opacity: 1;
+        margin-left: 0%;
+      }
+      50% {
+        margin-left: 25%;
+        opacity: 0.6;
+      }
+      100% {
+        margin-left: 100%;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes enter {
+      0% {
+        margin-left: 100%;
+        opacity: 0.3;
+      }
+      50% {
+        margin-left: 25%;
+        opacity: 0.6;
+      }
+      100% {
+        margin-left: 0%;
+        opacity: 1;
+        /* transform: scale(0) translate(0%, 0em); */
+      }
+    }
+  }
+`;
 export default Home;

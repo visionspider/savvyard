@@ -4,22 +4,16 @@ import { DateTime } from "luxon";
 import fileSaver from "file-saver";
 import styled from "styled-components";
 import { CurrentUserContext } from "../Context/CurrentUserContext";
-import { usersData } from "./users_data";
 import _ from "lodash";
 import Error from "../Error";
+import Loading from "../Loading";
 const Data = () => {
-  const { editUserInfo } = useContext(CurrentUserContext);
+  const { editUserInfo, status } = useContext(CurrentUserContext);
   const [chartData, setChartData] = useState({ datasets: [] });
   const [chartOptions, setChartOptions] = useState({});
   const [sensorData, setSensorData] = useState([]);
   const [selectedSensor, setSelectedSensor] = useState(false);
 
-  const saveFile = () => {
-    fileSaver.saveAs(
-      process.env.REACT_APP_CLIENT_URL + "/resources/data.text",
-      `data-${selectedSensor}.text`
-    );
-  };
   const selectZone = (ev) => {
     ev.preventDefault();
     //if ever a submit btn is added
@@ -63,20 +57,12 @@ const Data = () => {
     });
     // }
   });
-  console.log(readings);
-  console.log(timeStamp);
-  console.log(zones);
+  // console.log(readings);
+  // console.log(timeStamp);
+  // console.log(zones);
 
   //IN MS
   // +DateTime.now().setZone(usersData.userInfo.location.timezone);
-  //ENV to IGNORE THE FILE THAT THE USER WILL DOWNLOAD
-  // X AXIS AND Y AXIS LABEL
-  //IN READABLE FORMAT
-  // DateTime.now()
-  //     .setZone(usersData.userInfo.location.timezone)
-  //     .setLocale("en")
-  //     .toLocaleString(DateTime.DATETIME_SHORT)
-  // console.log(+DateTime.now().setZone(usersData.userInfo.location.timezone));
 
   useEffect(() => {
     setChartData({
@@ -134,7 +120,19 @@ const Data = () => {
       // }
     );
   }, [selectedSensor]);
-  if (editUserInfo) {
+  const saveFile = () => {
+    const data = new Blob([JSON.stringify({ readings, timeStamp }, null, 2)], {
+      type: "application/json",
+    });
+    //YOU CAN REPLACE BLOB WITH A FILE DESTINATION I.E
+    //process.env.REACT_APP_CLIENT_URL + "/resources/data.text",
+    fileSaver.saveAs(data, `data-${selectedSensor}.text`);
+  };
+  if (status.state === "loading") {
+    return <Loading />;
+  } else if (status.state === "error" || editUserInfo.userInfo === undefined) {
+    return <Error />;
+  } else if (status.state === "idle") {
     return (
       <Wrapper>
         <form
@@ -214,6 +212,7 @@ const Data = () => {
             ))}
           </select>
           <DownloadBtn
+            type="button"
             visible={selectedSensor.length ? true : false}
             onClick={saveFile}
           >
@@ -227,8 +226,6 @@ const Data = () => {
         )}
       </Wrapper>
     );
-  } else {
-    <Error />;
   }
 };
 const Wrapper = styled.div`

@@ -8,7 +8,7 @@ const ToggleUnit = () => {
   };
   return (
     <>
-      <label style={{ marginTop: "30px" }}>
+      <label style={{ marginTop: "30px", width: "200px" }}>
         Toggle °C / °F :{" "}
         <input
           type="button"

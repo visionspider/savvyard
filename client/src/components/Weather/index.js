@@ -5,9 +5,19 @@ import { DateTime } from "luxon";
 import WeatherIcon from "./WeatherIcon";
 import Error from "../Error";
 import ToggleUnit from "../ToggleUnit";
+import Loading from "../Loading";
 const Weather = () => {
-  const { weather, userInfo, unitChange } = useContext(CurrentUserContext);
-  if (weather && userInfo) {
+  const { weather, userInfo, unitChange, status } =
+    useContext(CurrentUserContext);
+  if (status.state === "loading") {
+    return <Loading />;
+  } else if (
+    status.state === "error" ||
+    userInfo.userInfo === undefined ||
+    weather.name === undefined
+  ) {
+    return <Error />;
+  } else if (status.state === "idle") {
     const date = DateTime.now()
       .setZone(userInfo.userInfo.location.timezone)
       .setLocale("en")
@@ -27,13 +37,10 @@ const Weather = () => {
               ? calcFahrenheit(weather.main.temp).toFixed(0) + "°F"
               : weather.main.temp.toFixed(1) + "°C"}
           </p>
-          {/* <icon></icon> */}
           <WeatherIcon condition={weather.weather[0].id} />
         </WeatherBox>
       </Wrapper>
     );
-  } else {
-    <Error />;
   }
 };
 

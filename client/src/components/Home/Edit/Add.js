@@ -24,5 +24,7 @@ const AddBtn = styled(IoMdAddCircleOutline)`
   height: 50px;
   padding: 1%;
   border-radius: 50%;
+  -webkit-box-shadow: 0px 0px 8px 0px darkgray;
+  box-shadow: 0px 0px 8px 0px darkgray;
 `;
 export default Add;
