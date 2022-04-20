@@ -12,11 +12,12 @@ const Error = () => {
       <ErrorContainer>
         <ErrorImg alt="Error" />
 
-        <h1>404 {status.status} Error</h1>
+        <h1>{status.status !== "" ? status.status + " Error" : "Oops"} </h1>
         <p>
-          {status.msg}
-          The page you are looking for might have been removed, had its name
-          changed or is temporarily unavailable.
+          {status.msg !== ""
+            ? status.msg + " Click the button below to go back to home."
+            : `The page you are looking for might have been removed, had its name
+          changed or is temporarily unavailable.`}
         </p>
         <ReturnBtn
           to={{ pathname: "/home" }}

@@ -21,7 +21,7 @@ const Home = () => {
   } else if (status.state === "error" || editUserInfo.userInfo === undefined) {
     return <Error />;
   } else if (status.state === "idle") {
-    console.log(editUserInfo);
+    // console.log(editUserInfo);
     const zones = [...editUserInfo.userInfo.zones];
     //When mapping a key is only required for the parent component if using a react fragment we cannot use the shortform when its the parent while mapping
     return (

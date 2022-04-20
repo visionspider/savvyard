@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { CurrentUserContext } from "../../Context/CurrentUserContext";
@@ -25,9 +26,10 @@ const Form = ({ set, zone, pos, type }) => {
       addZoneOrDevice(deviceInfo, type);
     } else if (type === "zone") {
       const zoneName = ev.target.name;
-      let zoneInfo = zoneTemplate;
+      let zoneInfo = _.cloneDeep(zoneTemplate);
       zoneInfo.data.zoneName = zoneName.value;
       zoneInfo.pos = pos + 1;
+      // console.log(zoneInfo.zoneId);
       zoneInfo.zoneId = zoneInfo.zoneId.replace("NUM", pos + 1);
       // console.log(zoneInfo);
       addZoneOrDevice(zoneInfo, type);

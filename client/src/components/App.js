@@ -108,7 +108,7 @@ const App = () => {
       // console.log("THIS IS MY CLONE IN APP = ", clone);
       handleSubmit(false, clone);
     }
-  }, 10000);
+  }, 600000);
 
   return (
     <Router>
