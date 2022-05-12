@@ -106,9 +106,10 @@ const App = () => {
       sortedDevices.userInfo.data = sortedData;
       const clone = _.cloneDeep(sortedDevices);
       // console.log("THIS IS MY CLONE IN APP = ", clone);
+
       handleSubmit(false, clone);
     }
-  }, 600000);
+  }, 10000);
 
   return (
     <Router>

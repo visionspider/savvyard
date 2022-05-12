@@ -143,6 +143,7 @@ const Data = () => {
             flexWrap: "wrap",
             background: "transparent",
             gap: "20px",
+            margin: "2%",
           }}
         >
           <label
@@ -250,6 +251,7 @@ const DownloadBtn = styled.button`
   /* flex-wrap: wrap; */
   // margin: 0 5% 5% 5%;
   padding: 0.5% 2%;
+
   width: auto;
   visibility: ${(p) => (p.visible ? "visible" : "hidden")};
 `;

@@ -71,7 +71,7 @@ const ZoneContainer = styled.div`
   .first {
     justify-self: center;
     position: relative;
-    top: 8vh;
+    margin-top: 8vh;
   }
 `;
 export default Zones;

@@ -103,9 +103,10 @@ const FormD = ({ device, setEditDevice }) => {
 };
 
 const Form = styled.form`
-  margin: 20px;
+  margin: 5% 0;
   padding: 2%;
-  min-width: 310px;
+  width: 90vw;
+  max-width: 500px;
   gap: 20px;
   display: flex;
   flex-direction: column;

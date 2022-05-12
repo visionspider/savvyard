@@ -55,9 +55,9 @@ const Form = ({ set, zone, pos, type }) => {
 
 const AddForm = styled.form`
   position: relative;
-  margin: 20px;
-  min-width: 315px;
-  width: 500px;
+  margin: 5% 0;
+  width: 90vw;
+  max-width: 500px;
   padding: 2%;
   gap: 20px;
   display: flex;

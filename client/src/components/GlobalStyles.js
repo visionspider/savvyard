@@ -22,8 +22,9 @@ const GlobalStyle = createGlobalStyle`
 button {
     cursor: pointer;
     font-weight: bold;
-    width: 99%;
-  border-radius: 20px;
+    width: auto;
+    height: auto;
+    min-height: 50px;
   background-color: #c2fbd7;
   border-radius: 100px;
   box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
@@ -70,6 +71,7 @@ button {
 }
 
 input{
+  /* position: relative; */
   outline: none;
   padding: 1%;
   border: solid 2px lightgray;

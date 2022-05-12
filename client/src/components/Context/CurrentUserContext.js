@@ -26,6 +26,7 @@ export const CurrentUserContextProvider = ({ children }) => {
         if (data.status === 200) {
           setUserInfo({ ...data.data });
           setEditUserInfo({ ...data.data });
+          setStatus({ ...status, state: "idle" });
         } else {
           setStatus({
             ...status,
@@ -74,6 +75,11 @@ export const CurrentUserContextProvider = ({ children }) => {
       });
   };
   useEffect(() => {
+    setStatus({
+      state: "loading",
+      msg: "",
+      status: "",
+    });
     console.log("Starting fetches");
     getUser();
     getWeather();
@@ -225,6 +231,13 @@ export const CurrentUserContextProvider = ({ children }) => {
   };
 
   const handleSubmit = (ev = false, data = false) => {
+    if (!data) {
+      setStatus({
+        state: "loading",
+        msg: "",
+        status: "",
+      });
+    }
     if (ev) {
       ev.preventDefault();
     }
@@ -235,8 +248,8 @@ export const CurrentUserContextProvider = ({ children }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        data: data ? data.userInfo : editUserInfo.userInfo,
-        _id: data ? data._id : editUserInfo._id,
+        data: data ? data.userInfo : clone.userInfo,
+        _id: data ? data._id : clone._id,
         type: "zones",
       }),
     })
@@ -248,6 +261,7 @@ export const CurrentUserContextProvider = ({ children }) => {
           console.log(data.data);
           setUserInfo({ ...data.data });
           setEditUserInfo({ ...data.data });
+          setStatus({ ...status, state: "idle" });
         } else {
           setStatus({
             ...status,

@@ -18,7 +18,7 @@ const Home = () => {
   // console.log(status);
   if (status.state === "loading") {
     return <Loading />;
-  } else if (status.state === "error" || editUserInfo.userInfo === undefined) {
+  } else if (status.state === "error") {
     return <Error />;
   } else if (status.state === "idle") {
     // console.log(editUserInfo);
