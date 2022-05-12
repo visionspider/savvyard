@@ -100,14 +100,12 @@ Use the `BLANK_README.md` to get started.
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-- [Next.js](https://nextjs.org/)
+- [Javascript](https://www.javascript.com/)
 - [React.js](https://reactjs.org/)
-- [Vue.js](https://vuejs.org/)
-- [Angular](https://angular.io/)
-- [Svelte](https://svelte.dev/)
-- [Laravel](https://laravel.com)
-- [Bootstrap](https://getbootstrap.com)
-- [JQuery](https://jquery.com)
+- [CSS](https://vuejs.org/)
+- [Node](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [MongoDB](https://mongodb.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
