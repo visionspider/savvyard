@@ -159,7 +159,8 @@ _Follow instructions below._
   <p>When designing I took inspiration off of apps for smart homes.</p><h3>Issues</h3>
   <p>Creating the feature of adding and removing an infinite amount of devices/sensors/zones. Working with data that is nested deep into a data set.</p>
   
- <figure class="video-wrap"><div class="video-container"><iframe src="https://www.youtube.com/embed/KgrU0RVNfMo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe></figure>
+ <a href="https://www.youtube.com/watch?v=KgrU0RVNfMo" >  <img src="./server/assets/youtube.png" alt="Youtube video" height="100%" width="100%">
+</a>
    
   </div>
 </div>
