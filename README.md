@@ -86,8 +86,6 @@
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
 - [Javascript](https://www.javascript.com/)
 - [React.js](https://reactjs.org/)
 - [CSS](https://vuejs.org/)
@@ -101,16 +99,19 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+<!-- This is an example of how to list things you need to use the software and how to install them. -->
 
-- yarn
+- vscode
   ```sh
-  yarn install
+  https://code.visualstudio.com/Download
+  ```
+  - node
+  ```sh
+  https://nodejs.dev/learn/how-to-install-nodejs
   ```
 
 ### Installation
