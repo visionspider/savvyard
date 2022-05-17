@@ -109,7 +109,7 @@ To get a local copy up and running follow these simple steps.
   ```sh
   https://code.visualstudio.com/Download
   ```
-  - node
+- node
   ```sh
   https://nodejs.dev/learn/how-to-install-nodejs
   ```
@@ -233,7 +233,7 @@ Distributed under the MIT License. See [LICENSE](license-url) for more informati
 
 ## Contact
 
-Your Name - [@DavieGie](https://twitter.com/DavieGie) - d.guillaumant.m@hotmail.com
+David Guillaumant-Mergler - [@DavieGie](https://twitter.com/DavieGie) - d.guillaumant.m@hotmail.com
 
 Project Link: [https://github.com/visionspider/savvyard](https://github.com/visionspider/savvyard)
 
@@ -243,14 +243,14 @@ Project Link: [https://github.com/visionspider/savvyard](https://github.com/visi
 
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+<!-- Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off! -->
 
 - [Choose an Open Source License](https://choosealicense.com)
-- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+<!-- - [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 - [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-- [Malven's Grid Cheatsheet](https://grid.malven.co/)
+- [Malven's Grid Cheatsheet](https://grid.malven.co/) -->
 - [Img Shields](https://shields.io)
-- [GitHub Pages](https://pages.github.com)
+<!-- - [GitHub Pages](https://pages.github.com) -->
 - [Font Awesome](https://fontawesome.com)
 - [React Icons](https://react-icons.github.io/react-icons/search)
 
