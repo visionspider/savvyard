@@ -78,7 +78,9 @@
 
 ## About The Project
 
-[![Savvyard][product-screenshot]](https://example.com)
+<!-- ADD URL TO DEPLOYED SITE IN FUTURE -->
+
+[![Savvyard][product-screenshot]](https://github.com/visionspider/savvyard)
 
 <p>Savvyard is meant to be an aid for greenhouse monitoring. Usually smart greenhouses are automated. Meaning self-sufficient for the most part. But things don't always go right. Thats where Savvyard comes to the rescue. With Savvyard you can monitor greenhouse activities from a distance and keep that peace of mind while enjoying your life.</p>
 
@@ -266,4 +268,4 @@ Project Link: [https://github.com/visionspider/savvyard](https://github.com/visi
 [license-url]: https://github.com/visionspider/savvyard/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/david-guillaumant-mergler/
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: ./server/assets/savvyard.png
