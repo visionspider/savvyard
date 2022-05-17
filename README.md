@@ -127,7 +127,7 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [https://opencagedata.com/](https://opencagedata.com/) & [https://openweathermap.org/current](https://openweathermap.org/current)
 2. Clone the repo
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
@@ -136,10 +136,16 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    yarn install
    ```
-4. Enter your API in `.env`
+4. Create a `.env` file inside server folder
+5. Enter your API keys in `.env`
    ```js
-   MONGO_URI=mongodb+srv:`//`<username>:<password>@cluster0.tjwvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-   OPENWEATHER_API_KEY=a34bfgdcd32
+   MONGO_URI=mongodb+srv:/&/<username>:<password>@cluster0.tjwvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+   ```
+   ```js
+   OPENCAGE_API_KEY = a34bfgdcd32;
+   ```
+   ```js
+   OPENWEATHER_API_KEY = a34bfgdcd32;
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -237,7 +243,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/DavieGie) - d.guillaumant.m@hotmail.com
+Your Name - [@DavieGie](https://twitter.com/DavieGie) - d.guillaumant.m@hotmail.com
 
 Project Link: [https://github.com/visionspider/savvyard](https://github.com/visionspider/savvyard)
 
