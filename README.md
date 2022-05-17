@@ -28,7 +28,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/visionspider/savvyard">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -37,14 +37,14 @@
   <p align="center">
     An awesome README template to jumpstart your projects!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/visionspider/savvyard"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/visionspider/savvyard">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/visionspider/savvyard/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/visionspider/savvyard/issues">Request Feature</a>
   </p>
 </div>
 
@@ -118,9 +118,9 @@ To get a local copy up and running follow these simple example steps.
 
 This is an example of how to list things you need to use the software and how to install them.
 
-- npm
+- yarn
   ```sh
-  npm install npm@latest -g
+  yarn install
   ```
 
 ### Installation
@@ -134,11 +134,12 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 3. Install NPM packages
    ```sh
-   npm install
+   yarn install
    ```
-4. Enter your API in `config.js`
+4. Enter your API in `.env`
    ```js
-   const API_KEY = "ENTER YOUR API";
+   MONGO_URI=mongodb+srv:`//`<username>:<password>@cluster0.tjwvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+   OPENWEATHER_API_KEY=a34bfgdcd32
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -173,15 +174,37 @@ _Below is an example of how you can instruct your audience on installing and set
 
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
+- [x] Create Dataset and DB
+- [x] Demo user Creation
+- [x] Setup internal & external APIs following RESTful principles
+- [x] Create logic to simulate temperature loss in greenhouse by utilizing data from weather API
+- [x] Test and refactor Backend with Insomnia / Postman
+- [x] Mobile First Design
+- [x] Accessible Design
+- [x] Ability to add / remove n amount of components and nested components
+- [x] Ability to save settings for sensors and devices
+- [x] Test and refactor Frontend
+- [ ] Add more devices and sensors (LIGHT / CARBON DIOXIDE / SOIL MOISTURE / SOIL pH / WIND SPEED / PRECIPITATION SENSORS)
+- [ ] Upgrade visuals of devices running
+- [ ] Upgrade visual queues of saved/error
+- [ ] Upgrade data visualization (more meaningful visualizations)
+- [ ] Add visualization of power usage
+- [ ] User log in
+- [ ] Calendar (to visualize a schedule)
+- [ ] Allow user to create logic
+- [ ] More test and refactoring
+- [ ] Cross-platform deployment
+  - [ ] Deploy web app
+  - [ ] Deploy android app (React Native)
+  - [ ] Deploy desktop app (ElectronJS)
 - [ ] Multi-language Support
+  - [ ] French
   - [ ] Chinese
   - [ ] Spanish
+- [ ] Launch alpha v1 (Public testing)
+- [ ] Fix more bugs
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/visionspider/savvyard/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -214,9 +237,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Your Name - [@your_twitter](https://twitter.com/DavieGie) - d.guillaumant.m@hotmail.com
 
-Project Link: [https://github.com/visionspider/savvyard](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/visionspider/savvyard](https://github.com/visionspider/savvyard)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -240,18 +263,18 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/visionspider/savvyard.svg?style=for-the-badge
+[contributors-url]: https://github.com/visionspider/savvyard/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/visionspider/savvyard.svg?style=for-the-badge
+[forks-url]: https://github.com/visionspider/savvyard/network/members
+[stars-shield]: https://img.shields.io/github/stars/visionspider/savvyard.svg?style=for-the-badge
+[stars-url]: https://github.com/visionspider/savvyard/stargazers
+[issues-shield]: https://img.shields.io/github/issues/visionspider/savvyard.svg?style=for-the-badge
+[issues-url]: https://github.com/visionspider/savvyard/issues
+[license-shield]: https://img.shields.io/github/license/visionspider/savvyard.svg?style=for-the-badge
+[license-url]: https://github.com/visionspider/savvyard/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://linkedin.com/in/david-guillaumant-mergler/
 [product-screenshot]: images/screenshot.png
 
 Watch the video!
