@@ -130,7 +130,7 @@ _Below is an example of how you can instruct your audience on installing and set
 1. Get a free API Key at [https://opencagedata.com/](https://opencagedata.com/) & [https://openweathermap.org/current](https://openweathermap.org/current)
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/visionspider/savvyard.git
    ```
 3. Install NPM packages
    ```sh
@@ -142,10 +142,12 @@ _Below is an example of how you can instruct your audience on installing and set
    MONGO_URI=mongodb+srv:/&/<username>:<password>@cluster0.tjwvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
    ```
    ```js
-   OPENCAGE_API_KEY = a34bfgdcd32;
+   <!-- prettier-ignore -->
+   OPENCAGE_API_KEY=a34bfgdcd32
    ```
    ```js
-   OPENWEATHER_API_KEY = a34bfgdcd32;
+   <!-- prettier-ignore -->
+   OPENWEATHER_API_KEY=a34bfgdcd32
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -158,6 +160,8 @@ _Below is an example of how you can instruct your audience on installing and set
  <h3>Intro</h3>
   <p>Savvyard is meant to be an aid for greenhouse monitoring. Usually smart greenhouses are automated. Meaning self-sufficient for the most part. But things don't always go right. Thats where Savvyard comes to the rescue. With Savvyard you can monitor greenhouse activities from a distance and keep that peace of mind while enjoying your life.</p>
   <img src="/images/savvyard-large.png" alt="mobile version of project: " height="50%" width="50%">
+    <img src="./images/savvyard-large.png" alt="mobile version of project: " height="50%" width="50%">
+
   <h3>Technologies used</h3>
   <p>React, Javascript, CSS, Node, Express, MongoDB</p>
   <img src="/images/savvyard-large2.png" alt="mobile version of project: " height="50%" width="50%">
