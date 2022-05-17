@@ -32,15 +32,15 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Savvyard</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An awesome greenhouse UI to monitor activity!
     <br />
     <a href="https://github.com/visionspider/savvyard"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/visionspider/savvyard">View Demo</a>
+    <a href="https://www.youtube.com/watch?v=KgrU0RVNfMo">View Demo</a>
     ·
     <a href="https://github.com/visionspider/savvyard/issues">Report Bug</a>
     ·
@@ -78,19 +78,9 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Savvyard][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-
-- Your time should be focused on creating something amazing. A project that solves a problem and helps others
-- You shouldn't be doing the same tasks over and over like creating a README from scratch
-- You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+<p>Savvyard is meant to be an aid for greenhouse monitoring. Usually smart greenhouses are automated. Meaning self-sufficient for the most part. But things don't always go right. Thats where Savvyard comes to the rescue. With Savvyard you can monitor greenhouse activities from a distance and keep that peace of mind while enjoying your life.</p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -125,7 +115,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Follow instructions below._
 
 1. Get a free API Key at [https://opencagedata.com/](https://opencagedata.com/) & [https://openweathermap.org/current](https://openweathermap.org/current)
 2. Clone the repo
@@ -141,12 +131,12 @@ _Below is an example of how you can instruct your audience on installing and set
    ```js
    MONGO_URI=mongodb+srv:/&/<username>:<password>@cluster0.tjwvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
    ```
-   ```js
    <!-- prettier-ignore -->
+   ```js
    OPENCAGE_API_KEY=a34bfgdcd32
    ```
-   ```js
    <!-- prettier-ignore -->
+   ```js
    OPENWEATHER_API_KEY=a34bfgdcd32
    ```
 
@@ -156,14 +146,9 @@ _Below is an example of how you can instruct your audience on installing and set
 
 ## Usage
 
-<div class="single-project-container">
- <h3>Intro</h3>
-  <p>Savvyard is meant to be an aid for greenhouse monitoring. Usually smart greenhouses are automated. Meaning self-sufficient for the most part. But things don't always go right. Thats where Savvyard comes to the rescue. With Savvyard you can monitor greenhouse activities from a distance and keep that peace of mind while enjoying your life.</p>
+<div class="single-project-container"> 
   <img src="/images/savvyard-large.png" alt="mobile version of project: " height="50%" width="50%">
     <img src="./images/savvyard-large.png" alt="mobile version of project: " height="50%" width="50%">
-
-  <h3>Technologies used</h3>
-  <p>React, Javascript, CSS, Node, Express, MongoDB</p>
   <img src="/images/savvyard-large2.png" alt="mobile version of project: " height="50%" width="50%">
   <h3>Motivation</h3>
   <p>Personally I have a passion for off-grid living and have looked extensively into greenhouses / aquaponics / hydroponics projects of others. As someone who also enjoys traveling I would like a way to monitor my plant babies while I am gone. As a compliment to those who have such products, a nice UI that could help share information and manipulate devices while one is away (traveling / etc…). This is my goal to achieve with this UI.</p>
@@ -239,7 +224,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [LICENSE](license-url) for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
