@@ -148,8 +148,7 @@ _Follow instructions below._
 ## Usage
 
 <div class="single-project-container"> 
-  <img src="./server/assets/savvyard-large.png" alt="mobile version of project: " height="50%" width="50%">
-    <img src="./server/assets/savvyard-large.png" alt="mobile version of project: " height="50%" width="50%">
+  <img src="./server/assets/savvyard-large.png" alt="mobile version of project: " height="100%" width="100%">
   <img src="./server/assets/savvyard-large2.png" alt="mobile version of project: " height="50%" width="50%">
   <h3>Motivation</h3>
   <p>Personally I have a passion for off-grid living and have looked extensively into greenhouses / aquaponics / hydroponics projects of others. As someone who also enjoys traveling I would like a way to monitor my plant babies while I am gone. As a compliment to those who have such products, a nice UI that could help share information and manipulate devices while one is away (traveling / etc…). This is my goal to achieve with this UI.</p>
