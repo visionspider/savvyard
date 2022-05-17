@@ -148,20 +148,19 @@ _Follow instructions below._
 ## Usage
 
 <div class="single-project-container"> 
-  <img src="./server/assets/savvyard-large.png" alt="mobile version of project: " height="100%" width="100%">
-  <img src="./server/assets/savvyard-large2.png" alt="mobile version of project: " height="50%" width="50%">
+ <a href="https://www.youtube.com/watch?v=KgrU0RVNfMo" >  <img src="./server/assets/youtube.png" alt="Youtube Savvyard demo (turn on subtitles)" height="100%" width="100%">
+</a>
   <h3>Motivation</h3>
   <p>Personally I have a passion for off-grid living and have looked extensively into greenhouses / aquaponics / hydroponics projects of others. As someone who also enjoys traveling I would like a way to monitor my plant babies while I am gone. As a compliment to those who have such products, a nice UI that could help share information and manipulate devices while one is away (traveling / etc…). This is my goal to achieve with this UI.</p>
-  <img src="./server/assets/savvyard-large3.png" alt="mobile version of project: " height="50%" width="50%">
+  <img src="./server/assets/savvyard-large3.png" alt="mobile version of project: " height="100%" width="100%">
   <h3>Features</h3>
   <ul><li>Being able to add/remove an infinite amount of devices/sensors/zones.</li><li>Being able to manually turn on controls on a sensor/device.</li><li>Being able to visualize data on the screen.</li><li>Being able to download data.</li></ul>
+    <img src="./server/assets/savvyard-large2.png" alt="mobile version of project: " height="100%" width="100%">
   <h3>Design</h3>
   <p>When designing I took inspiration off of apps for smart homes.</p><h3>Issues</h3>
-  <p>Creating the feature of adding and removing an infinite amount of devices/sensors/zones. Working with data that is nested deep into a data set.</p>
-  
- <a href="https://www.youtube.com/watch?v=KgrU0RVNfMo" >  <img src="./server/assets/youtube.png" alt="Youtube video" height="100%" width="100%">
-</a>
-   
+  <p>Creating the feature of adding and removing an infinite amount of devices/sensors/zones. Working with data that is nested deep into a data set.</p>   
+    <img src="./server/assets/savvyard-large.png" alt="mobile version of project: " height="100%" width="100%">
+
   </div>
 </div>
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -268,7 +267,3 @@ Project Link: [https://github.com/visionspider/savvyard](https://github.com/visi
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/david-guillaumant-mergler/
 [product-screenshot]: images/screenshot.png
-
-Watch the video!
-
-https://www.youtube.com/watch?v=KgrU0RVNfMo
