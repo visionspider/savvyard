@@ -149,7 +149,7 @@ _Follow instructions below._
 
 <div class="single-project-container"> 
   <img src="/images/savvyard-large.png" alt="mobile version of project: " height="50%" width="50%">
-    <img src="./images/savvyard-large.png" alt="mobile version of project: " height="50%" width="50%">
+    <img src="./public/images/savvyard-large.png" alt="mobile version of project: " height="50%" width="50%">
   <img src="/images/savvyard-large2.png" alt="mobile version of project: " height="50%" width="50%">
   <h3>Motivation</h3>
   <p>Personally I have a passion for off-grid living and have looked extensively into greenhouses / aquaponics / hydroponics projects of others. As someone who also enjoys traveling I would like a way to monitor my plant babies while I am gone. As a compliment to those who have such products, a nice UI that could help share information and manipulate devices while one is away (traveling / etc…). This is my goal to achieve with this UI.</p>
@@ -246,11 +246,7 @@ Project Link: [https://github.com/visionspider/savvyard](https://github.com/visi
 <!-- Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off! -->
 
 - [Choose an Open Source License](https://choosealicense.com)
-<!-- - [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-- [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-- [Malven's Grid Cheatsheet](https://grid.malven.co/) -->
 - [Img Shields](https://shields.io)
-<!-- - [GitHub Pages](https://pages.github.com) -->
 - [Font Awesome](https://fontawesome.com)
 - [React Icons](https://react-icons.github.io/react-icons/search)
 
